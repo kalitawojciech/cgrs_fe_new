@@ -88,7 +88,7 @@ export class CategoriesService extends BaseService {
    * @param id
    * @return Success
    */
-  deleteCategoriesId(id: string, config?: any): Observable<unknown> {
+  deleteCategoriesId(id: string, config?: any): Observable<Unit> {
     let url = '/Categories/{id}?';
     url = url.replace('{id}', encodeURIComponent('' + id));
 
@@ -98,7 +98,7 @@ export class CategoriesService extends BaseService {
   /**
    * @return Success
    */
-  getCategories(config?: any): Observable<unknown> {
+  getCategories(config?: any): Observable<CategoryInfoResponse[]> {
     let url = '/Categories?';
 
     return this.$get(url, config);
@@ -108,7 +108,7 @@ export class CategoriesService extends BaseService {
    * @param id
    * @return Success
    */
-  getCategoriesId(id: string, config?: any): Observable<unknown> {
+  getCategoriesId(id: string, config?: any): Observable<CategoryInfoResponse> {
     let url = '/Categories/{id}?';
     url = url.replace('{id}', encodeURIComponent('' + id));
 
@@ -119,7 +119,10 @@ export class CategoriesService extends BaseService {
    * @param id
    * @return Success
    */
-  getCategoriesIdPopulated(id: string, config?: any): Observable<unknown> {
+  getCategoriesIdPopulated(
+    id: string,
+    config?: any
+  ): Observable<CategoryPopulatedResponse> {
     let url = '/Categories/{id}/populated?';
     url = url.replace('{id}', encodeURIComponent('' + id));
 
@@ -133,7 +136,7 @@ export class CategoriesService extends BaseService {
   postCategories(
     body: CreateCategoryRequest | null | undefined,
     config?: any
-  ): Observable<unknown> {
+  ): Observable<Unit> {
     let url = '/Categories?';
 
     return this.$post(url, body, config);
@@ -146,7 +149,7 @@ export class CategoriesService extends BaseService {
   putCategories(
     body: UpdateCategoryRequest | null | undefined,
     config?: any
-  ): Observable<unknown> {
+  ): Observable<Unit> {
     let url = '/Categories?';
 
     return this.$put(url, body, config);
@@ -156,7 +159,7 @@ export class CategoriesService extends BaseService {
    * @param id
    * @return Success
    */
-  putCategoriesChangeStatusId(id: string, config?: any): Observable<unknown> {
+  putCategoriesChangeStatusId(id: string, config?: any): Observable<Unit> {
     let url = '/Categories/change-status/{id}?';
     url = url.replace('{id}', encodeURIComponent('' + id));
 
@@ -184,7 +187,7 @@ export class GamesService extends BaseService {
     isActive: boolean | null | undefined,
     categoryId: string | null | undefined,
     config?: any
-  ): Observable<unknown> {
+  ): Observable<GameInfoResponse[]> {
     let url = '/Games?';
     if (isActive !== undefined) {
       url += 'IsActive=' + encodeURIComponent('' + isActive) + '&';
@@ -200,7 +203,7 @@ export class GamesService extends BaseService {
    * @param id
    * @return Success
    */
-  getGamesId(id: string, config?: any): Observable<unknown> {
+  getGamesId(id: string, config?: any): Observable<GameInfoResponse> {
     let url = '/Games/{id}?';
     url = url.replace('{id}', encodeURIComponent('' + id));
 
@@ -211,7 +214,10 @@ export class GamesService extends BaseService {
    * @param id
    * @return Success
    */
-  getGamesIdPopulated(id: string, config?: any): Observable<unknown> {
+  getGamesIdPopulated(
+    id: string,
+    config?: any
+  ): Observable<GamePopulatedResponse> {
     let url = '/Games/{id}/populated?';
     url = url.replace('{id}', encodeURIComponent('' + id));
 
@@ -221,7 +227,7 @@ export class GamesService extends BaseService {
   /**
    * @return Success
    */
-  getGamesPopulated(config?: any): Observable<unknown> {
+  getGamesPopulated(config?: any): Observable<GamePopulatedResponse[]> {
     let url = '/Games/populated?';
 
     return this.$get(url, config);
@@ -230,7 +236,7 @@ export class GamesService extends BaseService {
   /**
    * @return Success
    */
-  getGamesRecommended(config?: any): Observable<unknown> {
+  getGamesRecommended(config?: any): Observable<GameInfoResponse[]> {
     let url = '/Games/recommended?';
 
     return this.$get(url, config);
@@ -243,7 +249,7 @@ export class GamesService extends BaseService {
   postGames(
     body: CreateGameRequest | null | undefined,
     config?: any
-  ): Observable<unknown> {
+  ): Observable<Unit> {
     let url = '/Games?';
 
     return this.$post(url, body, config);
@@ -256,7 +262,7 @@ export class GamesService extends BaseService {
   putGames(
     body: UpdateGameRequest | null | undefined,
     config?: any
-  ): Observable<unknown> {
+  ): Observable<Unit> {
     let url = '/Games?';
 
     return this.$put(url, body, config);
@@ -266,7 +272,7 @@ export class GamesService extends BaseService {
    * @param id
    * @return Success
    */
-  putGamesChangeStatusId(id: string, config?: any): Observable<unknown> {
+  putGamesChangeStatusId(id: string, config?: any): Observable<Unit> {
     let url = '/Games/change-status/{id}?';
     url = url.replace('{id}', encodeURIComponent('' + id));
 
@@ -289,7 +295,7 @@ export class GamesCommentsService extends BaseService {
    * @param id
    * @return Success
    */
-  deleteGamesCommentsId(id: string, config?: any): Observable<unknown> {
+  deleteGamesCommentsId(id: string, config?: any): Observable<Unit> {
     let url = '/GamesComments/{id}?';
     url = url.replace('{id}', encodeURIComponent('' + id));
 
@@ -303,7 +309,7 @@ export class GamesCommentsService extends BaseService {
   postGamesComments(
     body: CreateGameCommentRequest | null | undefined,
     config?: any
-  ): Observable<unknown> {
+  ): Observable<Unit> {
     let url = '/GamesComments?';
 
     return this.$post(url, body, config);
@@ -316,7 +322,7 @@ export class GamesCommentsService extends BaseService {
   putGamesComments(
     body: UpdateGameCommentRequest | null | undefined,
     config?: any
-  ): Observable<unknown> {
+  ): Observable<Unit> {
     let url = '/GamesComments?';
 
     return this.$put(url, body, config);
@@ -341,7 +347,7 @@ export class GamesMarksService extends BaseService {
   postGamesMarks(
     body: CrateGameMarkRequest | null | undefined,
     config?: any
-  ): Observable<unknown> {
+  ): Observable<Unit> {
     let url = '/GamesMarks?';
 
     return this.$post(url, body, config);
@@ -354,7 +360,7 @@ export class GamesMarksService extends BaseService {
   putGamesMarks(
     body: UpdateGameMarkRequest | null | undefined,
     config?: any
-  ): Observable<unknown> {
+  ): Observable<Unit> {
     let url = '/GamesMarks?';
 
     return this.$put(url, body, config);
@@ -400,7 +406,7 @@ export class UsersService extends BaseService {
   /**
    * @return Success
    */
-  getUsers(config?: any): Observable<unknown> {
+  getUsers(config?: any): Observable<UserInfoResponse[]> {
     let url = '/Users?';
 
     return this.$get(url, config);
@@ -413,7 +419,7 @@ export class UsersService extends BaseService {
   postUsersAuthenticate(
     body: UserAuthenticationRequest | null | undefined,
     config?: any
-  ): Observable<unknown> {
+  ): Observable<LoggedInUserResponse> {
     let url = '/Users/authenticate?';
 
     return this.$post(url, body, config);
@@ -426,7 +432,7 @@ export class UsersService extends BaseService {
   postUsersRegister(
     body: RegisterUserRequest | null | undefined,
     config?: any
-  ): Observable<unknown> {
+  ): Observable<Unit> {
     let url = '/Users/register?';
 
     return this.$post(url, body, config);
@@ -438,11 +444,47 @@ export interface CreateCategoryRequest {
   description?: string;
 }
 
+export interface Unit {}
+
+export interface CategoryInfoResponse {
+  id?: string;
+  name?: string;
+  description?: string;
+  isActive?: boolean;
+}
+
 export interface UpdateCategoryRequest {
   id?: string;
   name?: string;
   description?: string;
   isActive?: boolean;
+}
+
+export interface GamesMarkResponse {
+  id?: string;
+  averageScore?: number;
+  gameId?: string;
+  userId?: string;
+}
+
+export interface GameInfoResponse {
+  id?: string;
+  name?: string;
+  description?: string;
+  isActive?: boolean;
+  averageScore?: number;
+  isAdultOnly?: boolean;
+  categoryId?: string;
+  categoryName?: string;
+  gameMarkResponse?: GamesMarkResponse;
+}
+
+export interface CategoryPopulatedResponse {
+  id?: string;
+  name?: string;
+  description?: string;
+  isActive?: boolean;
+  games?: GameInfoResponse[];
 }
 
 export interface CreateGameRequest {
@@ -459,6 +501,32 @@ export interface UpdateGameRequest {
   isActive?: boolean;
   isAdultOnly?: boolean;
   categoryId?: string;
+}
+
+export interface UserInfoResponse {
+  id?: string;
+  email?: string;
+  nick?: string;
+  role?: string;
+}
+
+export interface GameCommentResponse {
+  id?: string;
+  message?: string;
+  gameId?: string;
+  userId?: string;
+  user?: UserInfoResponse;
+}
+
+export interface GamePopulatedResponse {
+  id?: string;
+  name?: string;
+  description?: string;
+  isActive?: boolean;
+  averageScore?: number;
+  isAdultOnly?: boolean;
+  category?: CategoryInfoResponse;
+  gameComments?: GameCommentResponse[];
 }
 
 export interface CreateGameCommentRequest {
@@ -498,4 +566,11 @@ export interface RegisterUserRequest {
 export interface UserAuthenticationRequest {
   email?: string;
   password?: string;
+}
+
+export interface LoggedInUserResponse {
+  id?: string;
+  email?: string;
+  token?: string;
+  role?: string;
 }
