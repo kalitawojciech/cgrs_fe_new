@@ -422,6 +422,8 @@ export class UsersService extends BaseService {
   ): Observable<LoggedInUserResponse> {
     let url = '/Users/authenticate?';
 
+    console.log(API_BASE_URL);
+
     return this.$post(url, body, config);
   }
 

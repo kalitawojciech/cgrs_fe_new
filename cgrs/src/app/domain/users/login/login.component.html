@@ -1,0 +1,8 @@
+<p>login works!</p>
+<form class="form-group" [formGroup]="loginForm">
+    <label>E-mail</label>
+    <input type="email" class="form-control" required formControlName="email">
+    <label>Password</label>
+    <input type="password" class="form-control" required formControlName="password">
+    <button type="submit" [disabled]="!loginForm.valid" (click)="logIn()">Log In</button>
+</form>
