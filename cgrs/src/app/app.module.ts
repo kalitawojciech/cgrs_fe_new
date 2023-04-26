@@ -7,6 +7,8 @@ import { AuthService } from './core/services/auth.service';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './domain/users/login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { API_BASE_URL } from './core/services/api.service';
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,10 @@ import { ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [AuthService],
+  providers: [
+    AuthService,
+    { provide: API_BASE_URL, useValue: environment.apiUrl }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
