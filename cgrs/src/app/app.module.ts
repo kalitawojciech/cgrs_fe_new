@@ -9,6 +9,7 @@ import { LoginComponent } from './domain/users/login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { API_BASE_URL } from './core/services/api.service';
 import { environment } from 'src/environments/environment';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { environment } from 'src/environments/environment';
     AppRoutingModule,
     BrowserModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule
   ],
   providers: [
     AuthService,
