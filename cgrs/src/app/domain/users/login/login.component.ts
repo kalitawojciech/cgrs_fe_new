@@ -13,12 +13,10 @@ export class LoginComponent implements OnInit {
   loading = false;
   submitted = false;
 
-  private requestQuery: UserAuthenticationRequest = {
-    email: null,
-    password: null
-  };
-
-  constructor(private formBuilder: FormBuilder, private authService: AuthService) { }
+  constructor(
+    private formBuilder: FormBuilder,
+    private authService: AuthService
+  ) { }
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
@@ -28,10 +26,16 @@ export class LoginComponent implements OnInit {
   }
 
   logIn() {
-    this.requestQuery.email = this.loginForm.get('email').value;
-    this.requestQuery.password = this.loginForm.get('password').value;
+    const query: UserAuthenticationRequest = {
+      email: this.loginForm.get('email').value,
+      password: this.loginForm.get('password').value
+    }
 
-    this.authService.authenticateUser(this.requestQuery).subscribe();
+    this.authService.authenticateUser(query).subscribe();
+  }
+
+  get loginFormControl() {
+    return this.loginForm.controls;
   }
 
 }
