@@ -421,7 +421,7 @@ export class UsersService extends BaseService {
     config?: any
   ): Observable<LoggedInUserResponse> {
     let url = '/Users/authenticate?';
-    
+
     return this.$post(url, body, config);
   }
 
@@ -457,7 +457,6 @@ export interface UpdateCategoryRequest {
   id?: string;
   name?: string;
   description?: string;
-  isActive?: boolean;
 }
 
 export interface GamesMarkResponse {

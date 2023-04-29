@@ -22,10 +22,12 @@ export class LoginComponent implements OnInit {
     this.loginForm = this.formBuilder.group({
       email: new FormControl(''),
       password: new FormControl('')
-    })
+    });
   }
 
   logIn() {
+    this.submitted = true;
+
     const query: UserAuthenticationRequest = {
       email: this.loginForm.get('email').value,
       password: this.loginForm.get('password').value
