@@ -1,1 +1,20 @@
 
+<div class="container">
+    <form class="form-group" [formGroup]="categoryForm">
+        <mat-form-field appearance="fill">
+            <mat-label>Name</mat-label>
+            <input type="text" matInput class="form-control" required formControlName="name">
+            <mat-error *ngIf="categoryFormControl.name.touched && categoryFormControl.name.errors?.required ">
+                Category name is <strong>required</strong>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Description</mat-label>
+            <input type="text" matInput class="form-control" required formControlName="description">
+            <mat-error *ngIf="categoryFormControl.description.touched && categoryFormControl.description.errors?.required ">
+                Description is <strong>required</strong>
+            </mat-error>
+        </mat-form-field>
+        <button type="submit" mat-raised-button [disabled]="!categoryForm.valid" (click)="onSubmit()">+-</button>
+    </form>
+</div>

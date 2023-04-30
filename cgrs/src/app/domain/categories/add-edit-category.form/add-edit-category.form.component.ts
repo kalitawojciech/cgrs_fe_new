@@ -27,8 +27,8 @@ export class AddEditCategoryComponent implements OnInit {
     this.isEditMode = !!this.id;
 
     this.categoryForm = this.formBuilder.group({
-      name: new FormControl('test'),
-      description: new FormControl('test'),
+      name: new FormControl(''),
+      description: new FormControl(''),
     });
 
     if (this.isEditMode) {
@@ -80,4 +80,7 @@ export class AddEditCategoryComponent implements OnInit {
     });
   }
 
+  get categoryFormControl() {
+    return this.categoryForm.controls;
+  }
 }
