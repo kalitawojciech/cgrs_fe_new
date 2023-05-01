@@ -14,6 +14,7 @@ import { AngularMaterialModule } from './angular-material.module';
 import { NavbarComponent } from './core/components/navbar/navbar.component';
 import { AddEditCategoryComponent } from './domain/categories/add-edit-category.form/add-edit-category.form.component';
 import { JwtInterceptor } from './core/helpers/jwt.interceptor';
+import { CategoriesListComponent } from './domain/categories/categories-list/categories-list.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { JwtInterceptor } from './core/helpers/jwt.interceptor';
     LoginComponent,
     NavbarComponent,
     AddEditCategoryComponent,
+    CategoriesListComponent,
   ],
   imports: [
     AppRoutingModule,
