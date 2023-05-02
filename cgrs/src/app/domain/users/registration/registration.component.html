@@ -1,0 +1,38 @@
+<div class="container">
+    <form class="form-group" [formGroup]="registrationForm">
+        <mat-form-field appearance="fill">
+            <mat-label>Email</mat-label>
+            <input type="email" matInput class="form-control" required email formControlName="email">
+            <mat-error *ngIf="registrationFormControl.email.touched && !registrationFormControl.email.errors?.required && registrationFormControl.email.errors?.email">
+                Please enter a valid email adress
+            </mat-error>
+            <mat-error *ngIf="registrationFormControl.email.touched && registrationFormControl.email.errors?.required ">
+                Email is <strong>required</strong>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Nick</mat-label>
+            <input type="nick" matInput class="form-control" required formControlName="nick">
+            <mat-error *ngIf="registrationFormControl.nick.touched && registrationFormControl.nick.errors?.required ">
+                Nick is <strong>required</strong>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Password</mat-label>
+            <input type="password" matInput class="form-control" required formControlName="password">
+            <mat-error *ngIf="registrationFormControl.password.touched && registrationFormControl.password.errors?.required ">
+                Password is <strong>required</strong>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="xd">
+            <mat-label>Birthday</mat-label>
+            <input matInput [matDatepicker]="birthDate" formControlName="birthDate" required>
+            <mat-datepicker #birthDate></mat-datepicker>
+            <mat-datepicker-toggle matSuffix [for]="birthDate"></mat-datepicker-toggle>
+            <mat-error *ngIf="registrationFormControl.birthDate.touched && registrationFormControl.birthDate.errors?.required ">
+                Birthday is <strong>required</strong>
+            </mat-error>
+        </mat-form-field>
+        <button type="submit" mat-raised-button [disabled]="!registrationForm.valid" (click)="register()">Sign Up</button>
+    </form>
+</div>

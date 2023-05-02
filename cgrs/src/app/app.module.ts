@@ -15,6 +15,7 @@ import { NavbarComponent } from './core/components/navbar/navbar.component';
 import { AddEditCategoryComponent } from './domain/categories/add-edit-category.form/add-edit-category.form.component';
 import { JwtInterceptor } from './core/helpers/jwt.interceptor';
 import { CategoriesListComponent } from './domain/categories/categories-list/categories-list.component';
+import { RegistrationComponent } from './domain/users/registration/registration.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { CategoriesListComponent } from './domain/categories/categories-list/cat
     NavbarComponent,
     AddEditCategoryComponent,
     CategoriesListComponent,
+    RegistrationComponent,
   ],
   imports: [
     AppRoutingModule,
