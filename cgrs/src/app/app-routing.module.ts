@@ -5,6 +5,7 @@ import { AddEditCategoryComponent } from './domain/categories/add-edit-category.
 import { AuthGuard } from './core/guards/auth.guard';
 import { CategoriesListComponent } from './domain/categories/categories-list/categories-list.component';
 import { RegistrationComponent } from './domain/users/registration/registration.component';
+import { AddEditGameComponent } from './domain/games/add-edit-game/add-edit-game.component';
 
 const routes: Routes = [
   {
@@ -30,6 +31,18 @@ const routes: Routes = [
   {
     path: 'category/new',
     component: AddEditCategoryComponent,
+    canActivate: [AuthGuard],
+    //data: { roles: [Role.Admin] }
+  },
+  {
+    path: 'game/new',
+    component: AddEditGameComponent,
+    canActivate: [AuthGuard],
+    //data: { roles: [Role.Admin] }
+  },
+  {
+    path: 'game/edit/:id',
+    component: AddEditGameComponent,
     canActivate: [AuthGuard],
     //data: { roles: [Role.Admin] }
   },

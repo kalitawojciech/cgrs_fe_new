@@ -16,6 +16,7 @@ import { AddEditCategoryComponent } from './domain/categories/add-edit-category.
 import { JwtInterceptor } from './core/helpers/jwt.interceptor';
 import { CategoriesListComponent } from './domain/categories/categories-list/categories-list.component';
 import { RegistrationComponent } from './domain/users/registration/registration.component';
+import { AddEditGameComponent } from './domain/games/add-edit-game/add-edit-game.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { RegistrationComponent } from './domain/users/registration/registration.
     AddEditCategoryComponent,
     CategoriesListComponent,
     RegistrationComponent,
+    AddEditGameComponent,
   ],
   imports: [
     AppRoutingModule,
