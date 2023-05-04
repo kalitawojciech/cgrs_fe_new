@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { first } from 'rxjs';
+import { Subject, first, takeUntil } from 'rxjs';
 import { CategoriesService, CategoryInfoResponse } from 'src/app/core/services/api.service';
 import { CreateGameRequest, GamesService, UpdateGameRequest } from 'src/app/core/services/api.service';
 
@@ -10,7 +10,7 @@ import { CreateGameRequest, GamesService, UpdateGameRequest } from 'src/app/core
   templateUrl: './add-edit-game.component.html',
   styleUrls: ['./add-edit-game.component.scss']
 })
-export class AddEditGameComponent implements OnInit {
+export class AddEditGameComponent implements OnInit, OnDestroy {
   gameForm: FormGroup;
   isEditMode: boolean;
   id: string;
@@ -18,6 +18,8 @@ export class AddEditGameComponent implements OnInit {
   submitted = false;
 
   categories: CategoryInfoResponse[] = [];
+
+  private unsubscribe$ = new Subject<void>();
 
   constructor(
     private formBuilder: FormBuilder,
@@ -34,15 +36,20 @@ export class AddEditGameComponent implements OnInit {
     this.gameForm = this.formBuilder.group({
       name: new FormControl(''),
       description: new FormControl(''),
-      category: new FormControl(null),
+      categoryId: new FormControl(null),
+      isAdultOnly: new FormControl(false),
     })
 
-    this.categoriesService.getCategories().subscribe(x => this.categories = x);
+    this.categoriesService.getCategories()
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe(x => this.categories = x);
 
     
     if (this.isEditMode) {
       this.gamesService.getGamesId(this.id)
-        .pipe(first())
+        .pipe(
+          first(),
+          takeUntil(this.unsubscribe$))
         .subscribe(x => this.gameForm.patchValue(x));
     }
   }
@@ -64,32 +71,36 @@ export class AddEditGameComponent implements OnInit {
   private createGame() {
     const query: CreateGameRequest = {
       name: this.gameForm.get('name').value,
-      description: this.gameForm.get('description').value
+      description: this.gameForm.get('description').value,
+      categoryId: this.gameForm.get('categoryId').value,
+      isAdultOnly: this.gameForm.get('isAdultOnly').value
     }
 
-    // this.categoriesService.postCategories(query)
-    //   .pipe(first())
-    //   .subscribe({
-
-    // });
+    this.gamesService.postGames(query)
+      .pipe(first())
+      .subscribe();
   }
 
   private editGame() {
     const query: UpdateGameRequest = {
       id: this.id,
       name: this.gameForm.get('name').value,
-      description: this.gameForm.get('description').value
+      description: this.gameForm.get('description').value,
+      categoryId: this.gameForm.get('categoryId').value,
+      isAdultOnly: this.gameForm.get('isAdultOnly').value
     }
 
-    // this.categoriesService.putCategories(query)
-    //   .pipe(first())
-    //   .subscribe({
-
-    // });
+    this.gamesService.putGames(query)
+      .pipe(first())
+      .subscribe();
   }
 
   get gameFormControl() {
     return this.gameForm.controls;
   }
 
+  ngOnDestroy(): void {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
+  }
 }

@@ -5,7 +5,7 @@
             <mat-label>Name</mat-label>
             <input type="text" matInput class="form-control" required formControlName="name">
             <mat-error *ngIf="gameFormControl.name.touched && gameFormControl.name.errors?.required ">
-                Category name is <strong>required</strong>
+                Game name is <strong>required</strong>
             </mat-error>
         </mat-form-field>
         <mat-form-field appearance="fill">
@@ -17,15 +17,16 @@
         </mat-form-field>
         <mat-form-field appearance="fill">
             <mat-label>Category</mat-label>
-            <mat-select formControlName="category">
+            <mat-select formControlName="categoryId" required>
                 <mat-option *ngFor="let category of categories" [value]="category.id">
                     {{ category.name }}
                 </mat-option>
             </mat-select>
             <mat-error *ngIf="gameFormControl.description.touched && gameFormControl.description.errors?.required ">
-                Description is <strong>required</strong>
+                Category is <strong>required</strong>
             </mat-error>
         </mat-form-field>
+        <mat-checkbox formControlName="isAdultOnly">Is adult only</mat-checkbox>
         <button type="submit" mat-raised-button [disabled]="!gameForm.valid" (click)="onSubmit()">{{isEditMode ? 'Save changes' : 'Add new'}}</button>
     </form>
 </div>
