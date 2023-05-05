@@ -18,6 +18,8 @@ import { CategoriesListComponent } from './domain/categories/categories-list/cat
 import { RegistrationComponent } from './domain/users/registration/registration.component';
 import { AddEditGameComponent } from './domain/games/add-edit-game/add-edit-game.component';
 import { GameDetailsComponent } from './domain/games/game-details/game-details.component';
+import { PageNotFoundComponent } from './core/pages/page-not-found/page-not-found.component';
+import { AccessForbidenPageComponent } from './core/pages/access-forbiden-page/access-forbiden-page.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +31,8 @@ import { GameDetailsComponent } from './domain/games/game-details/game-details.c
     RegistrationComponent,
     AddEditGameComponent,
     GameDetailsComponent,
+    PageNotFoundComponent,
+    AccessForbidenPageComponent,
   ],
   imports: [
     AppRoutingModule,
