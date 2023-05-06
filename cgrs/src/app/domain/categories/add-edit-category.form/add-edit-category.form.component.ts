@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { first } from 'rxjs';
+import { Subject, first, takeUntil } from 'rxjs';
 import { CategoriesService, CreateCategoryRequest, UpdateCategoryRequest } from 'src/app/core/services/api.service';
 
 @Component({
@@ -14,6 +14,8 @@ export class AddEditCategoryComponent implements OnInit {
   isEditMode: boolean;
   id: string;
   submitted: boolean = false;
+
+  private unsubscribe$ = new Subject<void>();
 
   constructor(
     private formBuilder: FormBuilder,
@@ -33,8 +35,10 @@ export class AddEditCategoryComponent implements OnInit {
 
     if (this.isEditMode) {
       this.categoriesService.getCategoriesId(this.id)
-        .pipe(first())
-        .subscribe(x => this.categoryForm.patchValue(x));
+        .pipe(
+          first(),
+          takeUntil(this.unsubscribe$)
+        ).subscribe(x => this.categoryForm.patchValue(x));
     }
   }
 
