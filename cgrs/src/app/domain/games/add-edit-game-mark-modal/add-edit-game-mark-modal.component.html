@@ -1,1 +1,14 @@
-<p>add-edit-game-mark-modal works!</p>
+
+<div class="container">
+    <form class="form-group" [formGroup]="gameMarkForm">
+        <mat-form-field appearance="fill">
+            <mat-label>Score</mat-label>
+            <input type="text" matInput class="form-control" required formControlName="description">
+            <mat-error *ngIf="gameMarkFormControl.description.touched && gameMarkFormControl.score.errors?.required ">
+                Score is <strong>required</strong>
+            </mat-error>
+        </mat-form-field>
+        <button type="submit" mat-raised-button [disabled]="!gameMarkForm.valid" (click)="onSubmit()">+-</button>
+        <button type="submit" mat-raised-button (click)="cancel()">Cancel</button>
+    </form>
+</div>
