@@ -69,7 +69,6 @@ export class AddEditCategoryComponent implements OnInit {
     });
   }
 
-
   private editCategory() {
     const query: UpdateCategoryRequest = {
       id: this.id,

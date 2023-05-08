@@ -21,6 +21,7 @@ import { GameDetailsComponent } from './domain/games/game-details/game-details.c
 import { PageNotFoundComponent } from './core/pages/page-not-found/page-not-found.component';
 import { AccessForbidenPageComponent } from './core/pages/access-forbiden-page/access-forbiden-page.component';
 import { AddEditGameMarkModalComponent } from './domain/games/add-edit-game-mark-modal/add-edit-game-mark-modal.component';
+import { GameCardComponent } from './domain/games/game-card/game-card.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { AddEditGameMarkModalComponent } from './domain/games/add-edit-game-mark
     PageNotFoundComponent,
     AccessForbidenPageComponent,
     AddEditGameMarkModalComponent,
+    GameCardComponent,
   ],
   imports: [
     AppRoutingModule,
