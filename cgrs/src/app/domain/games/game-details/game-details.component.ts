@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { first, takeUntil } from 'rxjs/operators';
-import { GamePopulatedResponse, GamesService } from 'src/app/core/services/api.service';
+import { GameInfoResponse, GamePopulatedResponse, GamesService } from 'src/app/core/services/api.service';
 
 @Component({
   selector: 'app-game-details',
@@ -10,7 +10,7 @@ import { GamePopulatedResponse, GamesService } from 'src/app/core/services/api.s
   styleUrls: ['./game-details.component.scss']
 })
 export class GameDetailsComponent implements OnInit {
-  gameData: GamePopulatedResponse;
+  gameData: GameInfoResponse;//GamePopulatedResponse;
 
   private unsubscribe$ = new Subject<void>();
 
@@ -23,7 +23,7 @@ export class GameDetailsComponent implements OnInit {
   ngOnInit(): void {
     const id = this.route.snapshot.params['id'];
 
-    this.gamesService.getGamesIdPopulated(id)
+    this.gamesService.getGamesId(id)//getGamesIdPopulated(id)
     .pipe(
       first(),
       takeUntil(this.unsubscribe$))

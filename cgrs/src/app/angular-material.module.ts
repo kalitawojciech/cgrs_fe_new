@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatCommonModule, MatNativeDateModule } from '@angular/material/core';
@@ -11,9 +12,10 @@ import { MatTableModule } from '@angular/material/table';
 
 const sharedModules = [
   MatButtonModule,
-  MatCommonModule,
+  MatCardModule,
   MatCheckboxModule,
   MatChipsModule,
+  MatCommonModule,
   MatDatepickerModule,
   MatFormFieldModule,
   MatInputModule,

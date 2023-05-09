@@ -1,1 +1,11 @@
-<p>game-card works!</p>
+<mat-card>
+    <mat-card-header>
+        <mat-card-title-group>
+            <mat-card-title>{{ game.name }}</mat-card-title>
+            <mat-card-subtitle>
+                <mat-chip disabled>{{ game.categoryName }}</mat-chip>
+            </mat-card-subtitle>
+            <!-- <img mat-card-lg-image src=""> -->
+        </mat-card-title-group>
+    </mat-card-header>
+</mat-card>
