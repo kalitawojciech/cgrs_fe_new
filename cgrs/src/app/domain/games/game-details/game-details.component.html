@@ -1,5 +1,6 @@
 <div *ngIf="gameData">
     <p>{{ gameData.name }}</p>
     <p>{{ gameData.description }}</p>
+
+    <app-game-card [game]="gameData"></app-game-card>
 </div>
-<app-game-card [game]="gameData"></app-game-card>

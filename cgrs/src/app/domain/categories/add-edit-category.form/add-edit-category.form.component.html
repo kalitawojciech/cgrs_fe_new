@@ -15,6 +15,9 @@
                 Description is <strong>required</strong>
             </mat-error>
         </mat-form-field>
-        <button type="submit" mat-raised-button [disabled]="!categoryForm.valid" (click)="onSubmit()">+-</button>
-    </form>
+        <div class="button-container">
+            <button type="submit" color="primary" mat-raised-button [disabled]="!categoryForm.valid" (click)="onSubmit()">Save</button>
+            <button type="submit" mat-raised-button (click)="onCancel()">Cancel</button>
+        </div>
+        </form>
 </div>

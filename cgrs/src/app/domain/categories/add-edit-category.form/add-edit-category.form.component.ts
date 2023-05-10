@@ -83,6 +83,10 @@ export class AddEditCategoryComponent implements OnInit {
     });
   }
 
+  onCancel() {
+    this.router.navigate(['category'],);
+  }
+
   get categoryFormControl() {
     return this.categoryForm.controls;
   }
