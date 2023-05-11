@@ -22,6 +22,7 @@ import { PageNotFoundComponent } from './core/pages/page-not-found/page-not-foun
 import { AccessForbidenPageComponent } from './core/pages/access-forbiden-page/access-forbiden-page.component';
 import { AddEditGameMarkModalComponent } from './domain/games/add-edit-game-mark-modal/add-edit-game-mark-modal.component';
 import { GameCardComponent } from './domain/games/game-card/game-card.component';
+import { ErrorInterceptor } from './core/error.interceptor';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { GameCardComponent } from './domain/games/game-card/game-card.component'
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     AuthService,
-    { provide: API_BASE_URL, useValue: environment.apiUrl }
+    { provide: API_BASE_URL, useValue: environment.apiUrl },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],
   bootstrap: [AppComponent]
 })

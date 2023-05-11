@@ -63,7 +63,7 @@ const routes: Routes = [
     component: AccessForbidenPageComponent,
   },
   {
-    path: '404',
+    path: 'not-found',
     component: PageNotFoundComponent,
   },
 ];
