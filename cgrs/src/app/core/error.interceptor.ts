@@ -23,6 +23,8 @@ export class ErrorInterceptor implements HttpInterceptor {
                 return new Observable<HttpEvent<null>>();
             }
 
+
+            // TODO: show error toast
             const error = err.error.message || err.statusText;
             return throwError(error);
         }));

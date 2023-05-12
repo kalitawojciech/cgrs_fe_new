@@ -32,6 +32,8 @@ export class CategoriesListComponent implements OnInit {
   }
 
   onDelete(id: string) {
+
+    // TODO: change to soft delete
     this.categoriesService.deleteCategoriesId(id).pipe(first()).subscribe();
   }
 
