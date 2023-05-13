@@ -23,6 +23,8 @@ import { AccessForbidenPageComponent } from './core/pages/access-forbiden-page/a
 import { AddEditGameMarkModalComponent } from './domain/games/add-edit-game-mark-modal/add-edit-game-mark-modal.component';
 import { GameCardComponent } from './domain/games/game-card/game-card.component';
 import { ErrorInterceptor } from './core/error.interceptor';
+import { AllertComponent } from './core/components/allert/allert.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -38,6 +40,7 @@ import { ErrorInterceptor } from './core/error.interceptor';
     AccessForbidenPageComponent,
     AddEditGameMarkModalComponent,
     GameCardComponent,
+    AllertComponent,
   ],
   imports: [
     AppRoutingModule,
