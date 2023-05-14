@@ -19,12 +19,13 @@ import { RegistrationComponent } from './domain/users/registration/registration.
 import { AddEditGameComponent } from './domain/games/add-edit-game/add-edit-game.component';
 import { GameDetailsComponent } from './domain/games/game-details/game-details.component';
 import { PageNotFoundComponent } from './core/pages/page-not-found/page-not-found.component';
-import { AccessForbidenPageComponent } from './core/pages/access-forbiden-page/access-forbiden-page.component';
+import { AccessForbiddenPageComponent } from './core/pages/access-forbidden-page/access-forbidden-page.component';
 import { AddEditGameMarkModalComponent } from './domain/games/add-edit-game-mark-modal/add-edit-game-mark-modal.component';
 import { GameCardComponent } from './domain/games/game-card/game-card.component';
 import { ErrorInterceptor } from './core/error.interceptor';
 import { AllertComponent } from './core/components/allert/allert.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { GamesListComponent } from './domain/games/games-list/games-list.component';
 
 @NgModule({
   declarations: [
@@ -37,10 +38,11 @@ import { MatSnackBar } from '@angular/material/snack-bar';
     AddEditGameComponent,
     GameDetailsComponent,
     PageNotFoundComponent,
-    AccessForbidenPageComponent,
+    AccessForbiddenPageComponent,
     AddEditGameMarkModalComponent,
     GameCardComponent,
     AllertComponent,
+    GamesListComponent,
   ],
   imports: [
     AppRoutingModule,

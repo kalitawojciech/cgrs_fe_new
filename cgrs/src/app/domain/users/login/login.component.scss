@@ -1,5 +1,17 @@
 form {
+    width: 20%;
+    margin-top: 100px;
+    margin-left: 50%;
+    margin-right: 30%;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+
+    mat-form-field, button {
+        width: 100%;
+    }
+
+    .mat-form-field-invalid {
+        margin-bottom: 5px;
+    }
 }

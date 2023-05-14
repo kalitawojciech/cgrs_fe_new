@@ -8,13 +8,18 @@ import { RegistrationComponent } from './domain/users/registration/registration.
 import { AddEditGameComponent } from './domain/games/add-edit-game/add-edit-game.component';
 import { GameDetailsComponent } from './domain/games/game-details/game-details.component';
 import { PageNotFoundComponent } from './core/pages/page-not-found/page-not-found.component';
-import { AccessForbidenPageComponent } from './core/pages/access-forbiden-page/access-forbiden-page.component';
+import { AccessForbiddenPageComponent } from './core/pages/access-forbidden-page/access-forbidden-page.component';
 import { Role } from './core/constants';
+import { GamesListComponent } from './domain/games/games-list/games-list.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: LoginComponent
+    component: GamesListComponent
+  },
+  {
+    path: 'games-list',
+    component: GamesListComponent
   },
   {
     path: 'login',
@@ -59,8 +64,8 @@ const routes: Routes = [
     data: { roles: [Role.Admin] }
   },
   {
-    path: '403',
-    component: AccessForbidenPageComponent,
+    path: 'access-forbidden', // 403,
+    component: AccessForbiddenPageComponent,
   },
   {
     path: 'not-found',

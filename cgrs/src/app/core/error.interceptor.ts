@@ -19,7 +19,6 @@ export class ErrorInterceptor implements HttpInterceptor {
         return next.handle(request).pipe(catchError(err => {
             if ([401, 403].indexOf(err.status) !== -1) {
                 this.authService.logout();
-                //location.reload();
             } else if ([404].indexOf(err.status) !== -1) {
                 this.router.navigateByUrl('/not-found', {replaceUrl: true});
 
@@ -29,7 +28,7 @@ export class ErrorInterceptor implements HttpInterceptor {
                 // this.snackBar.openFromComponent(AllertComponent, {
                 //     duration: 5000
                 // })
-                this.snackBar.open(err.error, 'Close', { duration: 5000 })
+                this.snackBar.open(err.error, 'Close', { duration: 5000, verticalPosition: 'top' })
 
                 return new Observable<HttpEvent<null>>();
             }
