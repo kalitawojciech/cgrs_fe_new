@@ -10,5 +10,17 @@
 
     table {
         width: 100%;
+
+        .mat-column-name {
+            width: 25%
+        }
+
+        .mat-column-description {
+            width: 65%
+        }
+
+        .mat-column-action-buttons {
+            width: 10%
+        }
     }
 }

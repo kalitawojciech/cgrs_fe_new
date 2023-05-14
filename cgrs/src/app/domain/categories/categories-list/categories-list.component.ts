@@ -10,7 +10,7 @@ import { CategoriesService, CategoryInfoResponse } from 'src/app/core/services/a
   styleUrls: ['./categories-list.component.scss']
 })
 export class CategoriesListComponent implements OnInit {
-  displayedColumns: string[] = ['name', 'description', 'actionButtons'];
+  displayedColumns: string[] = ['name', 'description', 'action-buttons'];
   categories: CategoryInfoResponse[] = [];
 
   private unsubscribe$ = new Subject<void>();
