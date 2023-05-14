@@ -64,9 +64,9 @@ export class AddEditCategoryComponent implements OnInit {
 
     this.categoriesService.postCategories(query)
       .pipe(first())
-      .subscribe({
-
-    });
+      .subscribe(() => {
+        this.router.navigate(['category']);
+      });
   }
 
   private editCategory() {
@@ -78,13 +78,13 @@ export class AddEditCategoryComponent implements OnInit {
 
     this.categoriesService.putCategories(query)
       .pipe(first())
-      .subscribe({
-
-    });
+      .subscribe(() => {
+        this.router.navigate(['category']);
+      });
   }
 
   onCancel() {
-    this.router.navigate(['category'],);
+    this.router.navigate(['category']);
   }
 
   get categoryFormControl() {

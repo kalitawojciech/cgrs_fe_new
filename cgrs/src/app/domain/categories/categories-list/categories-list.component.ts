@@ -31,6 +31,10 @@ export class CategoriesListComponent implements OnInit {
     this.router.navigate(['edit', id], {relativeTo: this.route});
   }
 
+  addNewCategory() {
+    this.router.navigate(['new'], {relativeTo: this.route});
+  }
+
   onDelete(id: string) {
 
     // TODO: change to soft delete
