@@ -1,17 +1,25 @@
-form {
-    width: 20%;
+.login-container {
     margin-top: 100px;
     margin-left: 50%;
     margin-right: 30%;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
 
     mat-form-field, button {
         width: 100%;
     }
 
-    .mat-form-field-invalid {
-        margin-bottom: 5px;
+    form {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        margin-bottom: 24px;
+    
+        .mat-form-field-invalid {
+            margin-bottom: 5px;
+        }
+
+        a {
+            margin-top: 16px;
+        }
     }
 }
