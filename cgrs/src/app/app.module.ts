@@ -26,6 +26,7 @@ import { ErrorInterceptor } from './core/error.interceptor';
 import { AllertComponent } from './core/components/allert/allert.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { GamesListComponent } from './domain/games/games-list/games-list.component';
+import { FooterComponent } from './core/components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { GamesListComponent } from './domain/games/games-list/games-list.compone
     GameCardComponent,
     AllertComponent,
     GamesListComponent,
+    FooterComponent,
   ],
   imports: [
     AppRoutingModule,
