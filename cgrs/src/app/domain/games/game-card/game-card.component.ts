@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { GameInfoResponse } from 'src/app/core/services/api.service';
 
 @Component({
@@ -9,9 +10,15 @@ import { GameInfoResponse } from 'src/app/core/services/api.service';
 export class GameCardComponent implements OnInit {
   @Input() game: GameInfoResponse;
 
-  constructor() { }
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+  ) { }
 
   ngOnInit(): void {
   }
 
+  onCardClick() {
+    this.router.navigate(['game', this.game.id]);
+  }
 }

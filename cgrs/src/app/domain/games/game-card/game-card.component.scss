@@ -1,6 +1,13 @@
+@import '~@angular/material/theming';
+
 mat-card {
     border-style: solid;
     border-width: 1px;
     border-color: black;
     margin: 5px;
+}
+
+.clickable:hover {
+    @include mat-elevation(8);
+    cursor: pointer;
 }
