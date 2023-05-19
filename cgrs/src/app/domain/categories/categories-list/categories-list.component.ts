@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Subject } from 'rxjs';
-import { first, takeUntil } from 'rxjs/operators';
+import { BehaviorSubject, Subject } from 'rxjs';
+import { first, switchMap, takeUntil } from 'rxjs/operators';
 import { CategoriesService, CategoryInfoResponse } from 'src/app/core/services/api.service';
 
 @Component({
@@ -10,7 +10,7 @@ import { CategoriesService, CategoryInfoResponse } from 'src/app/core/services/a
   styleUrls: ['./categories-list.component.scss']
 })
 export class CategoriesListComponent implements OnInit {
-  displayedColumns: string[] = ['name', 'description', 'action-buttons'];
+  displayedColumns: string[] = ['name', 'description', 'status', 'action-buttons'];
   categories: CategoryInfoResponse[] = [];
 
   private unsubscribe$ = new Subject<void>();
@@ -23,8 +23,8 @@ export class CategoriesListComponent implements OnInit {
 
   ngOnInit(): void {
     this.categoriesService.getCategories()
-    .pipe(takeUntil(this.unsubscribe$))
-    .subscribe(x => this.categories = x);
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe(x => this.categories = x);
   }
 
   onEdit(id: string) {
@@ -35,10 +35,13 @@ export class CategoriesListComponent implements OnInit {
     this.router.navigate(['new'], {relativeTo: this.route});
   }
 
-  onDelete(id: string) {
-
-    // TODO: change to soft delete
-    this.categoriesService.deleteCategoriesId(id).pipe(first()).subscribe();
+  changeStatus(id: string) {
+    this.categoriesService.putCategoriesChangeStatusId(id)
+      .pipe(
+        takeUntil(this.unsubscribe$),
+        switchMap(() => this.categoriesService.getCategories())
+      )
+      .subscribe((data) => this.categories = data);
   }
 
 }
