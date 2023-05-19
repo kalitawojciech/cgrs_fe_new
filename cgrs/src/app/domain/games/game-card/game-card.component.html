@@ -1,11 +1,18 @@
 <mat-card matRipple class="clickable" (click)="onCardClick()">
     <mat-card-header>
         <mat-card-title-group>
-            <mat-card-title>{{ game.name }}</mat-card-title>
+            <mat-card-title>
+                <h1>{{ game.name }}</h1>
+            </mat-card-title>
             <mat-card-subtitle>
-                <mat-chip disabled><span>{{ game.categoryName }}</span></mat-chip>
+                <mat-chip-list>
+                    <mat-chip color="primary" disabled><span>{{ game.categoryName }}</span></mat-chip>
+                </mat-chip-list>
             </mat-card-subtitle>
             <!-- <img mat-card-lg-image src=""> -->
         </mat-card-title-group>
     </mat-card-header>
+    <mat-card-content>
+        <span>{{ game.description }}</span>
+    </mat-card-content>
 </mat-card>
