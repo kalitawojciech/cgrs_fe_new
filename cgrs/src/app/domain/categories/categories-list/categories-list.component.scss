@@ -1,7 +1,9 @@
+@import '~@angular/material/theming';
+
 .categories-list__container {
     width: 90%;
     margin: 0 5% 0 5%;
-
+    
     .add-button-container {
         display: flex;
         flex-direction: row-reverse;
@@ -9,8 +11,14 @@
     }
 
     table {
+        @include mat-elevation(8);
         width: 100%;
         background-color: white;
+
+        th {
+            font-weight: bold;
+            font-size: 16px;
+        }
 
         .mat-column-name {
             width: 25%
@@ -22,6 +30,10 @@
 
         .mat-column-action-buttons {
             width: 10%
+        }
+
+        .mat-column-status {
+            padding-right: 10px;
         }
     }
 }

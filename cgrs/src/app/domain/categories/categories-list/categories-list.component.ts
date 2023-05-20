@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { first, switchMap, takeUntil } from 'rxjs/operators';
@@ -12,6 +14,9 @@ import { CategoriesService, CategoryInfoResponse } from 'src/app/core/services/a
 export class CategoriesListComponent implements OnInit {
   displayedColumns: string[] = ['name', 'description', 'status', 'action-buttons'];
   categories: CategoryInfoResponse[] = [];
+  dataSource: MatTableDataSource<CategoryInfoResponse>;
+
+  @ViewChild(MatSort) sort: MatSort;
 
   private unsubscribe$ = new Subject<void>();
 
@@ -24,7 +29,10 @@ export class CategoriesListComponent implements OnInit {
   ngOnInit(): void {
     this.categoriesService.getCategories()
       .pipe(takeUntil(this.unsubscribe$))
-      .subscribe(x => this.categories = x);
+      .subscribe(data => {
+        this.dataSource = new MatTableDataSource(data);
+        this.dataSource.sort = this.sort;
+      });
   }
 
   onEdit(id: string) {
@@ -41,7 +49,7 @@ export class CategoriesListComponent implements OnInit {
         takeUntil(this.unsubscribe$),
         switchMap(() => this.categoriesService.getCategories())
       )
-      .subscribe((data) => this.categories = data);
+      .subscribe((data) => this.dataSource.data = data);
   }
 
 }
