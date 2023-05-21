@@ -1,9 +1,9 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
-import { BehaviorSubject, Subject } from 'rxjs';
-import { first, switchMap, takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
+import { switchMap, takeUntil } from 'rxjs/operators';
 import { CategoriesService, CategoryInfoResponse } from 'src/app/core/services/api.service';
 
 @Component({
@@ -51,5 +51,4 @@ export class CategoriesListComponent implements OnInit {
       )
       .subscribe((data) => this.dataSource.data = data);
   }
-
 }
