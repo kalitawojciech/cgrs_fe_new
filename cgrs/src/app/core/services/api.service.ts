@@ -200,6 +200,22 @@ export class GamesService extends BaseService {
   }
 
   /**
+   * @param name (optional)
+   * @return Success
+   */
+  getGamesGetNames(
+    name: string | null | undefined,
+    config?: any
+  ): Observable<GameNameResponse[]> {
+    let url = '/Games/get-names?';
+    if (name !== undefined) {
+      url += 'name=' + encodeURIComponent('' + name) + '&';
+    }
+
+    return this.$get(url, config);
+  }
+
+  /**
    * @param id
    * @return Success
    */
@@ -497,7 +513,6 @@ export interface UpdateGameRequest {
   id?: string;
   name?: string;
   description?: string;
-  isActive?: boolean;
   isAdultOnly?: boolean;
   categoryId?: string;
 }
@@ -526,6 +541,11 @@ export interface GamePopulatedResponse {
   isAdultOnly?: boolean;
   category?: CategoryInfoResponse;
   gameComments?: GameCommentResponse[];
+}
+
+export interface GameNameResponse {
+  id?: string;
+  name?: string;
 }
 
 export interface CreateGameCommentRequest {
