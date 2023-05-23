@@ -2,6 +2,21 @@
     <button mat-button routerLink="/">
         <span>CGRS</span>
     </button>
+    <form>
+        <mat-form-field appearance="fill">
+            <input
+                matInput
+                placeholder="Search game"
+                aria-label="Search game"
+                type="text"
+                [formControl]="gameSearchControl"
+                [matAutocomplete]="auto"
+            >
+            <mat-autocomplete #auto="matAutocomplete" (optionSelected)="goToGamePage($event)">
+                <mat-option *ngFor="let game of gameNames" [value]="game">{{ game.name }}</mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+    </form>
     <span style="flex: 1 1 auto;"></span>
     <div *ngIf="currentUser" class="navbar-container">
         <button mat-button routerLink="/category">
@@ -18,5 +33,10 @@
                 </button>
             </mat-menu>
         </div>
+    </div>
+    <div *ngIf="!currentUser" class="navbar-container">
+        <button mat-button routerLink="/login">
+            <span>Sign In</span>
+        </button>
     </div>
 </mat-toolbar>

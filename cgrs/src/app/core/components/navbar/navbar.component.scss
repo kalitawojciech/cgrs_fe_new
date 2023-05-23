@@ -7,3 +7,9 @@ mat-toolbar {
     }
 }
 
+::ng-deep .mat-form-field-flex  {
+    background-color: #fafafa !important;
+    color: black;
+    font-size: 14px;
+}
+
