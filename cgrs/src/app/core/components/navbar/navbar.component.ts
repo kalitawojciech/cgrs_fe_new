@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { FormControl } from '@angular/forms';
+import { tap } from 'rxjs';
 import { AuthService } from '../../services/auth.service';
 import { GameNameResponse, GamesService, LoggedInUserResponse } from '../../services/api.service';
 import { Role } from '../../constants';
-import { FormControl } from '@angular/forms';
-import { tap } from 'rxjs';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -49,5 +49,4 @@ export class NavbarComponent implements OnInit {
     this.router.navigate(['game', $event.option.value.id]);
     this.gameSearchControl.reset();
   }
-
 }

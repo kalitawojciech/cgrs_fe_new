@@ -5,6 +5,11 @@ mat-toolbar {
     .navbar-container {
         display: flex;
     }
+
+    mat-form-field {
+        margin-left: 26px;
+        margin-top: 26px;
+    };
 }
 
 ::ng-deep .mat-form-field-flex  {
