@@ -27,6 +27,9 @@
             </mat-error>
         </mat-form-field>
         <mat-checkbox formControlName="isAdultOnly">Is adult only</mat-checkbox>
-        <button type="submit" mat-raised-button [disabled]="!gameForm.valid" (click)="onSubmit()">{{isEditMode ? 'Save changes' : 'Add new'}}</button>
+        <div class="button-container">
+            <button type="submit" color="primary" mat-raised-button [disabled]="!gameForm.valid" (click)="onSubmit()">{{isEditMode ? 'Save changes' : 'Add new'}}</button>
+            <button mat-raised-button (click)="onCancel()">Cancel</button>
+        </div>
     </form>
 </div>

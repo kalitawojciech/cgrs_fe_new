@@ -1,3 +1,9 @@
+<div class="buttons-container">
+    <button type="submit" color="primary" mat-raised-button (click)="editGame()">
+        Edit
+    </button>
+</div>
+
 <div *ngIf="gameData">
     <p>{{ gameData.name }}</p>
     <p>{{ gameData.description }}</p>

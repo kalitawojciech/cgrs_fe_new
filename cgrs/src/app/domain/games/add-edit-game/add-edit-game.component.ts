@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subject, first, takeUntil } from 'rxjs';
@@ -27,6 +28,7 @@ export class AddEditGameComponent implements OnInit, OnDestroy {
     private router: Router,
     private gamesService: GamesService,
     private categoriesService: CategoriesService,
+    private location: Location,
   ) { }
 
   ngOnInit(): void {
@@ -93,6 +95,10 @@ export class AddEditGameComponent implements OnInit, OnDestroy {
     this.gamesService.putGames(query)
       .pipe(first())
       .subscribe();
+  }
+
+  onCancel(): void {
+    this.location.back();
   }
 
   get gameFormControl() {

@@ -8,7 +8,9 @@
                 Score is <strong>required</strong>
             </mat-error>
         </mat-form-field>
-        <button type="submit" mat-raised-button [disabled]="!gameMarkForm.valid" (click)="onSubmit()">Save</button>
-        <button type="submit" mat-raised-button (click)="cancel()">Cancel</button>
+        <div class="button-container">
+            <button type="submit" color="primary" mat-raised-button [disabled]="!gameMarkForm.valid" (click)="onSubmit()">Save</button>
+            <button mat-raised-button (click)="onCancel()">Cancel</button>
+        </div>
     </form>
 </div>

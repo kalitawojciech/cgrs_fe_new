@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { first, takeUntil } from 'rxjs/operators';
-import { GameInfoResponse, GamePopulatedResponse, GamesService } from 'src/app/core/services/api.service';
+import { Role } from 'src/app/core/constants';
+import { GameInfoResponse, GamePopulatedResponse, GamesService, LoggedInUserResponse } from 'src/app/core/services/api.service';
+import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
   selector: 'app-game-details',
@@ -11,6 +13,8 @@ import { GameInfoResponse, GamePopulatedResponse, GamesService } from 'src/app/c
 })
 export class GameDetailsComponent implements OnInit {
   gameData: GameInfoResponse;//GamePopulatedResponse;
+  currentUser: LoggedInUserResponse | null;
+  roles = Role;
 
   private unsubscribe$ = new Subject<void>();
 
@@ -18,10 +22,18 @@ export class GameDetailsComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private gamesService: GamesService,
+    private authService: AuthService,
   ) { }
 
   ngOnInit(): void {
     const id = this.route.snapshot.params['id'];
+
+    this.authService.currentUser
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe(user => {
+        this.currentUser = user;
+      }
+    );
 
     this.gamesService.getGamesId(id)//getGamesIdPopulated(id)
     .pipe(
@@ -30,4 +42,8 @@ export class GameDetailsComponent implements OnInit {
     .subscribe(x => this.gameData = x);
   }
 
+
+  editGame(): void {
+    this.router.navigate(['game/edit', this.gameData.id]);
+  }
 }

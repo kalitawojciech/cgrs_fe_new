@@ -64,7 +64,7 @@ export class AddEditGameMarkModalComponent implements OnInit {
       .subscribe();
   }
 
-  cancel() {
+  onCancel() {
 
   }
 
