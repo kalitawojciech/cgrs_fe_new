@@ -46,4 +46,7 @@ export class GameDetailsComponent implements OnInit {
   editGame(): void {
     this.router.navigate(['game/edit', this.gameData.id]);
   }
+
+  openGameMarkModal(): void {
+  }
 }

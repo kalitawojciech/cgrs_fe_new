@@ -1,10 +1,18 @@
-<div class="buttons-container">
-    <button type="submit" color="primary" mat-raised-button (click)="editGame()">
-        Edit
-    </button>
-</div>
-
-<div *ngIf="gameData">
-    <p>{{ gameData.name }}</p>
-    <p>{{ gameData.description }}</p>
+<div class="page-container">
+    <div class="buttons-container" *ngIf="currentUser">
+        <div style="flex: 1 1 auto;"></div>
+        <button color="primary" mat-raised-button (click)="openGameMarkModal()">
+            Add/Edit game mark
+        </button>
+        <div *ngIf="currentUser.role !== roles.User">
+            <button color="primary" mat-raised-button (click)="editGame()">
+                Edit Game
+            </button>
+        </div>
+    </div>
+    
+    <div *ngIf="gameData">
+        <p>{{ gameData.name }}</p>
+        <p>{{ gameData.description }}</p>
+    </div>
 </div>
