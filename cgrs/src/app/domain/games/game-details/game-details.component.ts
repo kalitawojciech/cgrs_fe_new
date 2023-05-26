@@ -52,7 +52,10 @@ export class GameDetailsComponent implements OnInit {
 
   openGameMarkModal(): void {
     const dialogRef = this.dialog.open(AddEditGameMarkModalComponent, {
-
+      data : {
+        gameMark: null,
+        gameId: this.gameData.id,
+      }
     });
   }
 }

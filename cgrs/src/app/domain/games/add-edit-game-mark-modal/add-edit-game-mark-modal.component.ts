@@ -10,15 +10,13 @@ import { CrateGameMarkRequest, GamesMarkResponse, GamesMarksService, UpdateGameM
   styleUrls: ['./add-edit-game-mark-modal.component.scss']
 })
 export class AddEditGameMarkModalComponent implements OnInit {
-  @Input() gameMark: GamesMarkResponse;
-  @Input() gameId: string;
-
   isEditMode: boolean = false;
   gameMarkForm: FormGroup;
 
   constructor(
     public dialogRef: MatDialogRef<AddEditGameMarkModalComponent>,
-    //@Inject(MAT_DIALOG_DATA) public data: DialogData,
+    @Inject(MAT_DIALOG_DATA) public gameMark: GamesMarkResponse,
+    @Inject(MAT_DIALOG_DATA) public gameId: string,
     private formBuilder: FormBuilder,
     private gamesMarksService: GamesMarksService
   ) { }
@@ -28,8 +26,9 @@ export class AddEditGameMarkModalComponent implements OnInit {
       score: new FormControl(''),
     });
 
-    if (this.gameMarkForm !== null) {
-      this.isEditMode = true
+    if (this.gameMark != null) {
+      this.isEditMode = true;
+      this.gameMarkForm.patchValue({ score: this.gameMark.averageScore });
     }
   }
 
