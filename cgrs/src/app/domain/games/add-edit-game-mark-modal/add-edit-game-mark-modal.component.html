@@ -3,12 +3,12 @@
     <form class="form-group" [formGroup]="gameMarkForm">
         <mat-form-field appearance="fill">
             <mat-label>Score</mat-label>
-            <input type="text" matInput class="form-control" required formControlName="description">
-            <mat-error *ngIf="gameMarkFormControl.description.touched && gameMarkFormControl.score.errors?.required ">
+            <input type="number" matInput class="form-control" required formControlName="score">
+            <mat-error *ngIf="gameMarkFormControl.score.touched && gameMarkFormControl.score.errors?.required ">
                 Score is <strong>required</strong>
             </mat-error>
         </mat-form-field>
-        <div class="button-container">
+        <div class="buttons-container">
             <button type="submit" color="primary" mat-raised-button [disabled]="!gameMarkForm.valid" (click)="onSubmit()">Save</button>
             <button mat-raised-button (click)="onCancel()">Cancel</button>
         </div>

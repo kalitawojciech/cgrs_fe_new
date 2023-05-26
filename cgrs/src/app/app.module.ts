@@ -55,6 +55,9 @@ import { FooterComponent } from './core/components/footer/footer.component';
     ReactiveFormsModule,
     AngularMaterialModule
   ],
+  entryComponents: [
+    AddEditGameMarkModalComponent,
+  ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     AuthService,

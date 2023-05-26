@@ -1,7 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Inject, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { first } from 'rxjs';
-import { CrateGameMarkRequest, GamesMarksService, UpdateGameMarkRequest } from 'src/app/core/services/api.service';
+import { CrateGameMarkRequest, GamesMarkResponse, GamesMarksService, UpdateGameMarkRequest } from 'src/app/core/services/api.service';
 
 @Component({
   selector: 'app-add-edit-game-mark-modal',
@@ -9,12 +10,15 @@ import { CrateGameMarkRequest, GamesMarksService, UpdateGameMarkRequest } from '
   styleUrls: ['./add-edit-game-mark-modal.component.scss']
 })
 export class AddEditGameMarkModalComponent implements OnInit {
-  @Input() gameMarkId: string | null;
+  @Input() gameMark: GamesMarkResponse;
   @Input() gameId: string;
 
+  isEditMode: boolean = false;
   gameMarkForm: FormGroup;
 
   constructor(
+    public dialogRef: MatDialogRef<AddEditGameMarkModalComponent>,
+    //@Inject(MAT_DIALOG_DATA) public data: DialogData,
     private formBuilder: FormBuilder,
     private gamesMarksService: GamesMarksService
   ) { }
@@ -24,8 +28,8 @@ export class AddEditGameMarkModalComponent implements OnInit {
       score: new FormControl(''),
     });
 
-    if (this.gameMarkId !== null) {
-      //this.gamesMarksService getById - to do backend endpoint
+    if (this.gameMarkForm !== null) {
+      this.isEditMode = true
     }
   }
 
@@ -34,7 +38,7 @@ export class AddEditGameMarkModalComponent implements OnInit {
       return;
     }
 
-    if (this.gameMarkId !== null) {
+    if (this.isEditMode) {
       this.updateGameMark();
     }
 
@@ -54,7 +58,7 @@ export class AddEditGameMarkModalComponent implements OnInit {
 
   private updateGameMark() {
     const query: UpdateGameMarkRequest = {
-      id: this.gameMarkId,
+      id: this.gameMark.id,
       averageScore: this.gameMarkForm.get('score').value,
       gameId: this.gameId
     }
@@ -64,8 +68,8 @@ export class AddEditGameMarkModalComponent implements OnInit {
       .subscribe();
   }
 
-  onCancel() {
-
+  onCancel(): void {
+    this.dialogRef.close();
   }
 
   get gameMarkFormControl() {
