@@ -2,7 +2,7 @@ import { Component, Inject, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { first } from 'rxjs';
-import { CrateGameMarkRequest, GamesMarkResponse, GamesMarksService, UpdateGameMarkRequest } from 'src/app/core/services/api.service';
+import { CrateGameMarkRequest, GameMarkResponse, GamesMarksService, UpdateGameMarkRequest } from 'src/app/core/services/api.service';
 
 @Component({
   selector: 'app-add-edit-game-mark-modal',
@@ -15,7 +15,7 @@ export class AddEditGameMarkModalComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<AddEditGameMarkModalComponent>,
-    @Inject(MAT_DIALOG_DATA) public gameMark: GamesMarkResponse,
+    @Inject(MAT_DIALOG_DATA) public gameMark: GameMarkResponse,
     @Inject(MAT_DIALOG_DATA) public gameId: string,
     private formBuilder: FormBuilder,
     private gamesMarksService: GamesMarksService

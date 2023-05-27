@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { first, takeUntil } from 'rxjs/operators';
 import { Role } from 'src/app/core/constants';
-import { GameInfoResponse, GamePopulatedResponse, GamesService, LoggedInUserResponse } from 'src/app/core/services/api.service';
+import { GamePopulatedResponse, GamesService, LoggedInUserResponse } from 'src/app/core/services/api.service';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { AddEditGameMarkModalComponent } from '../add-edit-game-mark-modal/add-edit-game-mark-modal.component';
 
@@ -14,7 +14,7 @@ import { AddEditGameMarkModalComponent } from '../add-edit-game-mark-modal/add-e
   styleUrls: ['./game-details.component.scss']
 })
 export class GameDetailsComponent implements OnInit {
-  gameData: GameInfoResponse;//GamePopulatedResponse;
+  gameData: GamePopulatedResponse;
   currentUser: LoggedInUserResponse | null;
   roles = Role;
 
@@ -38,7 +38,7 @@ export class GameDetailsComponent implements OnInit {
       }
     );
 
-    this.gamesService.getGamesId(id)//getGamesIdPopulated(id)
+    this.gamesService.getGamesIdPopulated(id)//getGamesIdPopulated(id)
     .pipe(
       first(),
       takeUntil(this.unsubscribe$))

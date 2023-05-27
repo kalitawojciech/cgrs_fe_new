@@ -357,6 +357,20 @@ export class GamesMarksService extends BaseService {
   }
 
   /**
+   * @param gameId
+   * @return Success
+   */
+  getGamesMarksGameId(
+    gameId: string,
+    config?: any
+  ): Observable<GameMarkResponse> {
+    let url = '/GamesMarks/{gameId}?';
+    url = url.replace('{gameId}', encodeURIComponent('' + gameId));
+
+    return this.$get(url, config);
+  }
+
+  /**
    * @param body (optional)
    * @return Success
    */
@@ -475,7 +489,7 @@ export interface UpdateCategoryRequest {
   description?: string;
 }
 
-export interface GamesMarkResponse {
+export interface GameMarkResponse {
   id?: string;
   averageScore?: number;
   gameId?: string;
@@ -491,7 +505,7 @@ export interface GameInfoResponse {
   isAdultOnly?: boolean;
   categoryId?: string;
   categoryName?: string;
-  gameMarkResponse?: GamesMarkResponse;
+  gameMarkResponse?: GameMarkResponse;
 }
 
 export interface CategoryPopulatedResponse {
@@ -519,9 +533,7 @@ export interface UpdateGameRequest {
 
 export interface UserInfoResponse {
   id?: string;
-  email?: string;
   nick?: string;
-  role?: string;
 }
 
 export interface GameCommentResponse {
