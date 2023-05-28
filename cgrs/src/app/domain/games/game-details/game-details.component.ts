@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subject } from 'rxjs';
-import { first, takeUntil } from 'rxjs/operators';
+import { first, takeUntil, tap } from 'rxjs/operators';
 import { Role } from 'src/app/core/constants';
-import { GamePopulatedResponse, GamesService, LoggedInUserResponse } from 'src/app/core/services/api.service';
+import { GameMarkResponse, GamePopulatedResponse, GamesMarksService, GamesService, LoggedInUserResponse } from 'src/app/core/services/api.service';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { AddEditGameMarkModalComponent } from '../add-edit-game-mark-modal/add-edit-game-mark-modal.component';
 
@@ -16,6 +16,7 @@ import { AddEditGameMarkModalComponent } from '../add-edit-game-mark-modal/add-e
 export class GameDetailsComponent implements OnInit {
   gameData: GamePopulatedResponse;
   currentUser: LoggedInUserResponse | null;
+  gameMark: GameMarkResponse | null;
   roles = Role;
 
   private unsubscribe$ = new Subject<void>();
@@ -24,6 +25,7 @@ export class GameDetailsComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private gamesService: GamesService,
+    private gamesMarksService: GamesMarksService,
     private authService: AuthService,
     public dialog: MatDialog,
   ) { }
@@ -32,19 +34,34 @@ export class GameDetailsComponent implements OnInit {
     const id = this.route.snapshot.params['id'];
 
     this.authService.currentUser
-      .pipe(takeUntil(this.unsubscribe$))
+      .pipe(
+        tap(user => {
+          if (user !== null) {
+            this.getGameMark(id);
+          }
+        }),
+        takeUntil(this.unsubscribe$)
+      )
       .subscribe(user => {
         this.currentUser = user;
       }
     );
 
-    this.gamesService.getGamesIdPopulated(id)//getGamesIdPopulated(id)
+    this.gamesService.getGamesIdPopulated(id)
     .pipe(
       first(),
       takeUntil(this.unsubscribe$))
     .subscribe(x => this.gameData = x);
   }
 
+  getGameMark(gameId: string) {
+    this.gamesMarksService.getGamesMarksGameId(gameId)
+      .pipe(
+        first(),
+        takeUntil(this.unsubscribe$)
+      )
+      .subscribe(result => this.gameMark = result);
+  }
 
   editGame(): void {
     this.router.navigate(['game/edit', this.gameData.id]);

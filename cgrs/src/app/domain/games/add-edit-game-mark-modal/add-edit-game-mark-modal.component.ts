@@ -15,8 +15,7 @@ export class AddEditGameMarkModalComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<AddEditGameMarkModalComponent>,
-    @Inject(MAT_DIALOG_DATA) public gameMark: GameMarkResponse,
-    @Inject(MAT_DIALOG_DATA) public gameId: string,
+    @Inject(MAT_DIALOG_DATA) public data: GameMarkModalData,
     private formBuilder: FormBuilder,
     private gamesMarksService: GamesMarksService
   ) { }
@@ -26,9 +25,9 @@ export class AddEditGameMarkModalComponent implements OnInit {
       score: new FormControl(''),
     });
 
-    if (this.gameMark != null) {
+    if (this.data.gameMark != null) {
       this.isEditMode = true;
-      this.gameMarkForm.patchValue({ score: this.gameMark.averageScore });
+      this.gameMarkForm.patchValue({ score: this.data.gameMark.averageScore });
     }
   }
 
@@ -47,7 +46,7 @@ export class AddEditGameMarkModalComponent implements OnInit {
   private addNewGameMark() {
     const query: CrateGameMarkRequest = {
       averageScore: this.gameMarkForm.get('score').value,
-      gameId: this.gameId
+      gameId: this.data.gameId
     }
 
     this.gamesMarksService.postGamesMarks(query)
@@ -57,9 +56,9 @@ export class AddEditGameMarkModalComponent implements OnInit {
 
   private updateGameMark() {
     const query: UpdateGameMarkRequest = {
-      id: this.gameMark.id,
+      id: this.data.gameMark.id,
       averageScore: this.gameMarkForm.get('score').value,
-      gameId: this.gameId
+      gameId: this.data.gameId
     }
 
     this.gamesMarksService.putGamesMarks(query)
@@ -74,4 +73,9 @@ export class AddEditGameMarkModalComponent implements OnInit {
   get gameMarkFormControl() {
     return this.gameMarkForm.controls;
   }
+}
+
+export interface GameMarkModalData {
+  gameMark: GameMarkResponse;
+  gameId: string;
 }

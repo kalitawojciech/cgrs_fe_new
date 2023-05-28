@@ -2,7 +2,7 @@
     <div class="buttons-container" *ngIf="currentUser">
         <div style="flex: 1 1 auto;"></div>
         <button color="primary" mat-raised-button (click)="openGameMarkModal()">
-            Add/Edit game mark
+            {{ gameMark ? 'Change' : 'Add' }} game mark
         </button>
         <div *ngIf="currentUser.role !== roles.User">
             <button color="primary" mat-raised-button (click)="editGame()">
