@@ -4,7 +4,7 @@
     <form class="form-group" [formGroup]="gameMarkForm">
         <mat-form-field appearance="fill">
             <mat-label>Score</mat-label>
-            <input type="number" matInput class="form-control" required formControlName="score">
+            <input type="number" min="1" max="100" matInput class="form-control" required formControlName="score">
             <mat-error *ngIf="gameMarkFormControl.score.touched && gameMarkFormControl.score.errors?.required ">
                 Score is <strong>required</strong>
             </mat-error>

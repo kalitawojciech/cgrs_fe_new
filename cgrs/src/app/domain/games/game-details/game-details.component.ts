@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { first, takeUntil, tap } from 'rxjs/operators';
 import { Role } from 'src/app/core/constants';
-import { GameMarkResponse, GamePopulatedResponse, GamesMarksService, GamesService, LoggedInUserResponse } from 'src/app/core/services/api.service';
+import { GameMarkResponse, GamePopulatedResponse, GamesService, LoggedInUserResponse } from 'src/app/core/services/api.service';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { AddEditGameMarkModalComponent } from '../add-edit-game-mark-modal/add-edit-game-mark-modal.component';
 
@@ -25,7 +25,6 @@ export class GameDetailsComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private gamesService: GamesService,
-    private gamesMarksService: GamesMarksService,
     private authService: AuthService,
     public dialog: MatDialog,
   ) { }
@@ -34,14 +33,7 @@ export class GameDetailsComponent implements OnInit {
     const id = this.route.snapshot.params['id'];
 
     this.authService.currentUser
-      .pipe(
-        tap(user => {
-          if (user !== null) {
-            this.getGameMark(id);
-          }
-        }),
-        takeUntil(this.unsubscribe$)
-      )
+      .pipe(takeUntil(this.unsubscribe$))
       .subscribe(user => {
         this.currentUser = user;
       }
@@ -54,15 +46,6 @@ export class GameDetailsComponent implements OnInit {
     .subscribe(x => this.gameData = x);
   }
 
-  getGameMark(gameId: string) {
-    this.gamesMarksService.getGamesMarksGameId(gameId)
-      .pipe(
-        first(),
-        takeUntil(this.unsubscribe$)
-      )
-      .subscribe(result => this.gameMark = result);
-  }
-
   editGame(): void {
     this.router.navigate(['game/edit', this.gameData.id]);
   }
@@ -70,7 +53,7 @@ export class GameDetailsComponent implements OnInit {
   openGameMarkModal(): void {
     const dialogRef = this.dialog.open(AddEditGameMarkModalComponent, {
       data : {
-        gameMark: null,
+        gameMark: this.gameMark,
         gameId: this.gameData.id,
       }
     });

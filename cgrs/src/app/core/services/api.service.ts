@@ -181,11 +181,15 @@ export class GamesService extends BaseService {
   /**
    * @param isActive (optional) (API name: IsActive)
    * @param categoryId (optional) (API name: CategoryId)
+   * @param pageNumber (optional) (API name: PageNumber)
+   * @param pageSize (optional) (API name: PageSize)
    * @return Success
    */
   getGames(
     isActive: boolean | null | undefined,
     categoryId: string | null | undefined,
+    pageNumber: number | null | undefined,
+    pageSize: number | null | undefined,
     config?: any
   ): Observable<GameInfoResponse[]> {
     let url = '/Games?';
@@ -194,6 +198,12 @@ export class GamesService extends BaseService {
     }
     if (categoryId !== undefined) {
       url += 'CategoryId=' + encodeURIComponent('' + categoryId) + '&';
+    }
+    if (pageNumber !== undefined) {
+      url += 'PageNumber=' + encodeURIComponent('' + pageNumber) + '&';
+    }
+    if (pageSize !== undefined) {
+      url += 'PageSize=' + encodeURIComponent('' + pageSize) + '&';
     }
 
     return this.$get(url, config);
@@ -553,6 +563,7 @@ export interface GamePopulatedResponse {
   isAdultOnly?: boolean;
   category?: CategoryInfoResponse;
   gameComments?: GameCommentResponse[];
+  userGameMark?: GameMarkResponse;
 }
 
 export interface GameNameResponse {

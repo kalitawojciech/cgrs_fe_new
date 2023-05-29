@@ -1,8 +1,8 @@
-<div class="page-container">
+<div class="page-container" *ngIf="gameData">
     <div class="buttons-container" *ngIf="currentUser">
         <div style="flex: 1 1 auto;"></div>
         <button color="primary" mat-raised-button (click)="openGameMarkModal()">
-            {{ gameMark ? 'Change' : 'Add' }} game mark
+            {{ gameData.userGameMark ? 'Change' : 'Add' }} game mark
         </button>
         <div *ngIf="currentUser.role !== roles.User">
             <button color="primary" mat-raised-button (click)="editGame()">
@@ -10,8 +10,7 @@
             </button>
         </div>
     </div>
-    
-    <div *ngIf="gameData">
+    <div>
         <p>{{ gameData.name }}</p>
         <p>{{ gameData.description }}</p>
     </div>

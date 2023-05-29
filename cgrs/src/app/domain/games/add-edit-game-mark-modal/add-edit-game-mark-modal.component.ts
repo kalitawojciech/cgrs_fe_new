@@ -1,5 +1,5 @@
 import { Component, Inject, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { first } from 'rxjs';
 import { CrateGameMarkRequest, GameMarkResponse, GamesMarksService, UpdateGameMarkRequest } from 'src/app/core/services/api.service';
@@ -22,7 +22,7 @@ export class AddEditGameMarkModalComponent implements OnInit {
 
   ngOnInit(): void {
     this.gameMarkForm = this.formBuilder.group({
-      score: new FormControl(''),
+      score: new FormControl(100, [Validators.max(100), Validators.min(1)]),
     });
 
     if (this.data.gameMark != null) {
@@ -39,7 +39,6 @@ export class AddEditGameMarkModalComponent implements OnInit {
     if (this.isEditMode) {
       this.updateGameMark();
     }
-
     this.addNewGameMark();
   }
 
@@ -51,7 +50,7 @@ export class AddEditGameMarkModalComponent implements OnInit {
 
     this.gamesMarksService.postGamesMarks(query)
       .pipe(first())
-      .subscribe();
+      .subscribe(() => this.dialogRef.close());
   }
 
   private updateGameMark() {
@@ -63,7 +62,7 @@ export class AddEditGameMarkModalComponent implements OnInit {
 
     this.gamesMarksService.putGamesMarks(query)
       .pipe(first())
-      .subscribe();
+      .subscribe(() => this.dialogRef.close());
   }
 
   onCancel(): void {

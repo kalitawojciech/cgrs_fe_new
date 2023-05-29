@@ -18,7 +18,7 @@ export class GamesListComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.gamesService
-      .getGames(true, null)
+      .getGames(true, null, undefined, undefined)
       .pipe(takeUntil(this.unsubscribe$))
       .subscribe(games => this.games = games);
   }
