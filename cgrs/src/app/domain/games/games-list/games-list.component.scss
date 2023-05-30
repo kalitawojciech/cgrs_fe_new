@@ -1,0 +1,13 @@
+.card-table-container {
+   display: flex;
+   flex-wrap: wrap;
+   //flex-direction: row;
+}
+
+app-game-card {
+   width: 100%;
+}
+
+.card-table-container > app-game-card {
+   flex-basis: 50%;
+}

@@ -191,7 +191,7 @@ export class GamesService extends BaseService {
     pageNumber: number | null | undefined,
     pageSize: number | null | undefined,
     config?: any
-  ): Observable<GameInfoResponse[]> {
+  ): Observable<GameInfoResponsePagedResponse> {
     let url = '/Games?';
     if (isActive !== undefined) {
       url += 'IsActive=' + encodeURIComponent('' + isActive) + '&';
@@ -539,6 +539,11 @@ export interface UpdateGameRequest {
   description?: string;
   isAdultOnly?: boolean;
   categoryId?: string;
+}
+
+export interface GameInfoResponsePagedResponse {
+  results?: GameInfoResponse[];
+  totalDataCount?: number;
 }
 
 export interface UserInfoResponse {

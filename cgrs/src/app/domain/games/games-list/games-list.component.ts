@@ -1,5 +1,6 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subject, takeUntil } from 'rxjs';
+import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { Subject, takeUntil, tap } from 'rxjs';
 import { GameInfoResponse, GamesService } from 'src/app/core/services/api.service';
 
 @Component({
@@ -7,8 +8,13 @@ import { GameInfoResponse, GamesService } from 'src/app/core/services/api.servic
   templateUrl: './games-list.component.html',
   styleUrls: ['./games-list.component.scss']
 })
-export class GamesListComponent implements OnInit, OnDestroy {
+export class GamesListComponent implements OnInit, AfterViewInit, OnDestroy {
   games: GameInfoResponse[] = [];
+  pageSize: number = 4;
+  pageNumber: number = 0;
+  totalDataCount: number;
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;
 
   private unsubscribe$ = new Subject<void>();
 
@@ -17,15 +23,33 @@ export class GamesListComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
-    this.gamesService
-      .getGames(true, null, undefined, undefined)
-      .pipe(takeUntil(this.unsubscribe$))
-      .subscribe(games => this.games = games);
+    this.getGames();
+  }
+
+  ngAfterViewInit(): void {
+    this.paginator.page
+    .pipe(
+      tap((change) => {
+        this.pageNumber = change.pageIndex;
+        this.getGames();
+      })
+    )
+    .subscribe();
   }
   
   ngOnDestroy(): void {
     this.unsubscribe$.next();
     this.unsubscribe$.complete();
+  }
+
+  private getGames(): void {
+    this.gamesService
+    .getGames(true, null, this.pageNumber, this.pageSize)
+    .pipe(takeUntil(this.unsubscribe$))
+    .subscribe(data => {
+      this.games = data.results;
+      this.totalDataCount = data.totalDataCount;
+    });
   }
 
 }
