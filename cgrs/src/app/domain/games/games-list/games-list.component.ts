@@ -2,6 +2,7 @@ import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular
 import { MatPaginator } from '@angular/material/paginator';
 import { Subject, takeUntil, tap } from 'rxjs';
 import { GameInfoResponse, GamesService } from 'src/app/core/services/api.service';
+import { SpinnerService } from 'src/app/core/services/spinner.service';
 
 @Component({
   selector: 'app-games-list',
@@ -19,7 +20,8 @@ export class GamesListComponent implements OnInit, AfterViewInit, OnDestroy {
   private unsubscribe$ = new Subject<void>();
 
   constructor(
-    private gamesService: GamesService
+    private gamesService: GamesService,
+    private spinnerService: SpinnerService,
   ) { }
 
   ngOnInit(): void {
@@ -43,13 +45,16 @@ export class GamesListComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   private getGames(): void {
+    this.spinnerService.showSpinner();
     this.gamesService
     .getGames(true, null, this.pageNumber, this.pageSize)
     .pipe(takeUntil(this.unsubscribe$))
     .subscribe(data => {
       this.games = data.results;
       this.totalDataCount = data.totalDataCount;
-    });
+      //this.spinnerService.hideSpinner();
+    },
+    () => this.spinnerService.hideSpinner());
   }
 
 }

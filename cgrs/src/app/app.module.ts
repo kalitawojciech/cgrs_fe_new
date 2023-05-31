@@ -27,6 +27,7 @@ import { AllertComponent } from './core/components/allert/allert.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { GamesListComponent } from './domain/games/games-list/games-list.component';
 import { FooterComponent } from './core/components/footer/footer.component';
+import { SpinnerComponent } from './core/components/spinner/spinner.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { FooterComponent } from './core/components/footer/footer.component';
     AllertComponent,
     GamesListComponent,
     FooterComponent,
+    SpinnerComponent,
   ],
   imports: [
     AppRoutingModule,
