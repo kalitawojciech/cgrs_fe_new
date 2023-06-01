@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { first } from 'rxjs';
 import { RegisterUserRequest, UsersService } from 'src/app/core/services/api.service';
+import { SpinnerService } from 'src/app/core/services/spinner.service';
 
 @Component({
   selector: 'app-registration',
@@ -15,7 +16,8 @@ export class RegistrationComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private usersService: UsersService
+    private usersService: UsersService,
+    private spinnerService: SpinnerService,
   ) { }
 
   ngOnInit(): void {
@@ -31,6 +33,8 @@ export class RegistrationComponent implements OnInit {
     if (this.registrationForm.invalid) {
       return;
     }
+    
+    this.spinnerService.showSpinner();
 
     const requestQuery: RegisterUserRequest = {
       email: this.registrationForm.get('email').value,
@@ -39,7 +43,11 @@ export class RegistrationComponent implements OnInit {
       password: this.registrationForm.get('password').value
     }
 
-    this.usersService.postUsersRegister(requestQuery).pipe(first()).subscribe();
+    this.usersService.postUsersRegister(requestQuery)
+    .pipe(first())
+    .subscribe(() => {
+      this.spinnerService.hideSpinner();
+    });
   }
 
   
