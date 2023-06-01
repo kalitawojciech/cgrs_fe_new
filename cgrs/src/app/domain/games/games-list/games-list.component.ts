@@ -52,7 +52,7 @@ export class GamesListComponent implements OnInit, AfterViewInit, OnDestroy {
     .subscribe(data => {
       this.games = data.results;
       this.totalDataCount = data.totalDataCount;
-      //this.spinnerService.hideSpinner();
+      this.spinnerService.hideSpinner();
     },
     () => this.spinnerService.hideSpinner());
   }

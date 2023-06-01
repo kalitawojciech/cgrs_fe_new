@@ -28,6 +28,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { GamesListComponent } from './domain/games/games-list/games-list.component';
 import { FooterComponent } from './core/components/footer/footer.component';
 import { SpinnerComponent } from './core/components/spinner/spinner.component';
+import { SpinnerService } from './core/services/spinner.service';
 
 @NgModule({
   declarations: [
