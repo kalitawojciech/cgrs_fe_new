@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
 import { first } from 'rxjs';
 import { RegisterUserRequest, UsersService } from 'src/app/core/services/api.service';
 import { SpinnerService } from 'src/app/core/services/spinner.service';
@@ -11,11 +12,10 @@ import { SpinnerService } from 'src/app/core/services/spinner.service';
 })
 export class RegistrationComponent implements OnInit {
   registrationForm: FormGroup;
-  loading = false;
-  submitted = false;
 
   constructor(
     private formBuilder: FormBuilder,
+    private router: Router,
     private usersService: UsersService,
     private spinnerService: SpinnerService,
   ) { }
@@ -47,6 +47,7 @@ export class RegistrationComponent implements OnInit {
     .pipe(first())
     .subscribe(() => {
       this.spinnerService.hideSpinner();
+      this.router.navigate(['login']);
     });
   }
 
