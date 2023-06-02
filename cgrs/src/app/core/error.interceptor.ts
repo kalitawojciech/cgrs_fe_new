@@ -5,17 +5,21 @@ import { AuthService } from "./services/auth.service";
 import { Router } from "@angular/router";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { AllertComponent } from "./components/allert/allert.component";
+import { SpinnerService } from "./services/spinner.service";
 
 @Injectable({providedIn: 'root'})
 export class ErrorInterceptor implements HttpInterceptor {
     constructor(
         private router: Router,
         private authService: AuthService,
-        private snackBar: MatSnackBar
+        private snackBar: MatSnackBar,
+        private spinnerService: SpinnerService,
     ) { }
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         return next.handle(request).pipe(catchError(err => {
+            this.spinnerService.hideSpinner();
+
             if ([401, 403].indexOf(err.status) !== -1) {
                 this.authService.logout();
             } else if ([404].indexOf(err.status) !== -1) {
@@ -32,7 +36,7 @@ export class ErrorInterceptor implements HttpInterceptor {
                 return new Observable<HttpEvent<null>>();
             }
 
-            const error = err.error.message || err.statusText;
+            const error = err?.error?.message || err.statusText;
             return throwError(error);
         }));
     }
