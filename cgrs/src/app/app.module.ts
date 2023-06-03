@@ -29,6 +29,7 @@ import { GamesListComponent } from './domain/games/games-list/games-list.compone
 import { FooterComponent } from './core/components/footer/footer.component';
 import { SpinnerComponent } from './core/components/spinner/spinner.component';
 import { SpinnerService } from './core/services/spinner.service';
+import { RecommendGamesListComponent } from './core/games/recommend-games-list/recommend-games-list.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { SpinnerService } from './core/services/spinner.service';
     GamesListComponent,
     FooterComponent,
     SpinnerComponent,
+    RecommendGamesListComponent,
   ],
   imports: [
     AppRoutingModule,

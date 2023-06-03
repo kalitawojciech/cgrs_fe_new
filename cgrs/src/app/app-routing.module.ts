@@ -11,6 +11,7 @@ import { PageNotFoundComponent } from './core/pages/page-not-found/page-not-foun
 import { AccessForbiddenPageComponent } from './core/pages/access-forbidden-page/access-forbidden-page.component';
 import { Role } from './core/constants';
 import { GamesListComponent } from './domain/games/games-list/games-list.component';
+import { RecommendGamesListComponent } from './core/games/recommend-games-list/recommend-games-list.component';
 
 const routes: Routes = [
   {
@@ -28,6 +29,10 @@ const routes: Routes = [
   {
     path: 'register',
     component: RegistrationComponent,
+  },
+  {
+    path: 'recommend',
+    component: RecommendGamesListComponent,
   },
   {
     path: 'category',

@@ -17,6 +17,9 @@
             </mat-autocomplete>
         </mat-form-field>
     </form>
+    <button *ngIf="currentUser" class="recommend-button" mat-button routerLink="/recommend">
+        <span>Recommended Games</span>
+    </button>
     <span style="flex: 1 1 auto;"></span>
     <div *ngIf="currentUser" class="navbar-container">
         <button *ngIf="currentUser.role !== roles.User" mat-button routerLink="/category">
