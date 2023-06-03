@@ -24,12 +24,12 @@ import { AddEditGameMarkModalComponent } from './domain/games/add-edit-game-mark
 import { GameCardComponent } from './domain/games/game-card/game-card.component';
 import { ErrorInterceptor } from './core/error.interceptor';
 import { AllertComponent } from './core/components/allert/allert.component';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { GamesListComponent } from './domain/games/games-list/games-list.component';
 import { FooterComponent } from './core/components/footer/footer.component';
 import { SpinnerComponent } from './core/components/spinner/spinner.component';
 import { SpinnerService } from './core/services/spinner.service';
-import { RecommendGamesListComponent } from './core/games/recommend-games-list/recommend-games-list.component';
+import { RecommendGamesListComponent } from './domain/games/recommend-games-list/recommend-games-list.component';
+import { GameCommentsPanelComponent } from './domain/games/game-comments-panel/game-comments-panel.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +50,7 @@ import { RecommendGamesListComponent } from './core/games/recommend-games-list/r
     FooterComponent,
     SpinnerComponent,
     RecommendGamesListComponent,
+    GameCommentsPanelComponent,
   ],
   imports: [
     AppRoutingModule,

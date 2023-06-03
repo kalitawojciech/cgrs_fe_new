@@ -11,7 +11,7 @@ import { PageNotFoundComponent } from './core/pages/page-not-found/page-not-foun
 import { AccessForbiddenPageComponent } from './core/pages/access-forbidden-page/access-forbidden-page.component';
 import { Role } from './core/constants';
 import { GamesListComponent } from './domain/games/games-list/games-list.component';
-import { RecommendGamesListComponent } from './core/games/recommend-games-list/recommend-games-list.component';
+import { RecommendGamesListComponent } from './domain/games/recommend-games-list/recommend-games-list.component';
 
 const routes: Routes = [
   {
