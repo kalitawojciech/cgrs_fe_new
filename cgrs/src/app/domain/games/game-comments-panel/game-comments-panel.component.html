@@ -1,1 +1,13 @@
-<p>game-comments-panel works!</p>
+<div class="page-container">
+    <div class="buttons-container" *ngIf="currentUser">
+        <div style="flex: 1 1 auto;"></div>
+        <div *ngIf="currentUser.role !== roles.User">
+            <button type="button" color="primary" mat-raised-button (click)="addComment()">
+                Add comment
+            </button>
+        </div>
+    </div>
+    <div *ngFor="let comment of gameComments">
+
+    </div>
+</div>

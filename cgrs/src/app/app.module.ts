@@ -30,6 +30,7 @@ import { SpinnerComponent } from './core/components/spinner/spinner.component';
 import { SpinnerService } from './core/services/spinner.service';
 import { RecommendGamesListComponent } from './domain/games/recommend-games-list/recommend-games-list.component';
 import { GameCommentsPanelComponent } from './domain/games/game-comments-panel/game-comments-panel.component';
+import { AddEditGameCommentModalComponent } from './domain/games/add-edit-game-comment-modal/add-edit-game-comment-modal.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { GameCommentsPanelComponent } from './domain/games/game-comments-panel/g
     SpinnerComponent,
     RecommendGamesListComponent,
     GameCommentsPanelComponent,
+    AddEditGameCommentModalComponent,
   ],
   imports: [
     AppRoutingModule,

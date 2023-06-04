@@ -14,5 +14,6 @@
         <p>{{ gameData.name }}</p>
         <p>{{ gameData.description }}</p>
     </div>
+
+    <app-game-comments-panel [gameId]="gameData.id" [currentUser]="currentUser"></app-game-comments-panel>
 </div>
-<app-game-comments-panel></app-game-comments-panel>

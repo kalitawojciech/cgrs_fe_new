@@ -1,0 +1,16 @@
+<div class="container">
+   <h1>{{ isEditMode ? 'Edit ' : 'Add' }} game comment</h1>
+   <form class="form-group" [formGroup]="gameCommentForm">
+       <mat-form-field appearance="fill">
+           <mat-label>Message</mat-label>
+           <input type="number" min="1" max="100" matInput class="form-control" required formControlName="message">
+           <mat-error *ngIf="gameCommentFormControl.message.touched && gameCommentFormControl.message.errors?.required ">
+               Message is <strong>required</strong>
+           </mat-error>
+       </mat-form-field>
+       <div class="buttons-container">
+           <button type="submit" color="primary" mat-raised-button [disabled]="!gameCommentForm.valid" (click)="onSubmit()">Save</button>
+           <button type="button" mat-raised-button (click)="onCancel()">Cancel</button>
+       </div>
+   </form>
+</div>
