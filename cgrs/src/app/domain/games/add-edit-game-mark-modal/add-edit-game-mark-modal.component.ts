@@ -2,6 +2,7 @@ import { Component, Inject, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { first } from 'rxjs';
+import { ModalAction } from 'src/app/core/constants';
 import { CrateGameMarkRequest, GameMarkResponse, GamesMarksService, UpdateGameMarkRequest } from 'src/app/core/services/api.service';
 
 @Component({
@@ -50,7 +51,7 @@ export class AddEditGameMarkModalComponent implements OnInit {
 
     this.gamesMarksService.postGamesMarks(query)
       .pipe(first())
-      .subscribe(() => this.dialogRef.close());
+      .subscribe(() => this.dialogRef.close(ModalAction.Submited));
   }
 
   private updateGameMark() {
@@ -62,11 +63,11 @@ export class AddEditGameMarkModalComponent implements OnInit {
 
     this.gamesMarksService.putGamesMarks(query)
       .pipe(first())
-      .subscribe(() => this.dialogRef.close());
+      .subscribe(() => this.dialogRef.close(ModalAction.Submited));
   }
 
   onCancel(): void {
-    this.dialogRef.close();
+    this.dialogRef.close(ModalAction.Cancelled);
   }
 
   get gameMarkFormControl() {

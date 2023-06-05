@@ -27,10 +27,10 @@ import { AllertComponent } from './core/components/allert/allert.component';
 import { GamesListComponent } from './domain/games/games-list/games-list.component';
 import { FooterComponent } from './core/components/footer/footer.component';
 import { SpinnerComponent } from './core/components/spinner/spinner.component';
-import { SpinnerService } from './core/services/spinner.service';
 import { RecommendGamesListComponent } from './domain/games/recommend-games-list/recommend-games-list.component';
 import { GameCommentsPanelComponent } from './domain/games/game-comments-panel/game-comments-panel.component';
 import { AddEditGameCommentModalComponent } from './domain/games/add-edit-game-comment-modal/add-edit-game-comment-modal.component';
+import { CommentCardComponent } from './domain/games/game-comments-panel/comment-card/comment-card.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +53,7 @@ import { AddEditGameCommentModalComponent } from './domain/games/add-edit-game-c
     RecommendGamesListComponent,
     GameCommentsPanelComponent,
     AddEditGameCommentModalComponent,
+    CommentCardComponent,
   ],
   imports: [
     AppRoutingModule,

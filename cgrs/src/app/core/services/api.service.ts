@@ -329,6 +329,22 @@ export class GamesCommentsService extends BaseService {
   }
 
   /**
+   * @param gameId (optional)
+   * @return Success
+   */
+  getGamesComments(
+    gameId: string | null | undefined,
+    config?: any
+  ): Observable<Unit> {
+    let url = '/GamesComments?';
+    if (gameId !== undefined) {
+      url += 'gameId=' + encodeURIComponent('' + gameId) + '&';
+    }
+
+    return this.$get(url, config);
+  }
+
+  /**
    * @param body (optional)
    * @return Success
    */
@@ -567,7 +583,7 @@ export interface GamePopulatedResponse {
   averageScore?: number;
   isAdultOnly?: boolean;
   category?: CategoryInfoResponse;
-  gameComments?: GameCommentResponse[];
+  gamesComments?: GameCommentResponse[];
   userGameMark?: GameMarkResponse;
 }
 

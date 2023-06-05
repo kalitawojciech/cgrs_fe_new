@@ -1,0 +1,7 @@
+mat-card {
+   margin-bottom: 12px;
+}
+
+::ng-deep .mat-card-header-text {
+   margin: 0 !important;
+}

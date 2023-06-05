@@ -3,3 +3,8 @@ export enum Role {
     Admin = 'Admin',
     SuperAdmin = 'SuperAdmin',
 }
+
+export enum ModalAction {
+    Submited = 'Submited',
+    Cancelled = 'Cancelled',
+}

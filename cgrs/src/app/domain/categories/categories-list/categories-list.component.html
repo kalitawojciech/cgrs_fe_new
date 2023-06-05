@@ -27,8 +27,9 @@
                 <button mat-icon-button color="primary" aria-label="Edit" (click)="onEdit(row.id)">
                     <mat-icon>edit</mat-icon>
                 </button>
-                <button mat-icon-button color="warn" aria-label="Change status" (click)="changeStatus(row.id)">
-                    <mat-icon>delete</mat-icon>
+                <button mat-icon-button color="primary" aria-label="Change status" (click)="changeStatus(row.id)">
+                    <mat-icon *ngIf="row.isActive">toggle_on</mat-icon>
+                    <mat-icon *ngIf="!row.isActive">toggle_off</mat-icon>
                 </button>
             </td>
         </ng-container>
