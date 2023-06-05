@@ -53,14 +53,14 @@ const routes: Routes = [
     data: { roles: [Role.Admin] }
   },
   {
-    path: 'game/:id',
-    component: GameDetailsComponent,
-  },
-  {
     path: 'game/new',
     component: AddEditGameComponent,
     canActivate: [AuthGuard],
     data: { roles: [Role.Admin] }
+  },
+  {
+    path: 'game/:id',
+    component: GameDetailsComponent,
   },
   {
     path: 'game/edit/:id',
@@ -75,6 +75,10 @@ const routes: Routes = [
   {
     path: 'not-found',
     component: PageNotFoundComponent,
+  },
+  {
+    path: '**',
+    redirectTo: '',
   },
 ];
 

@@ -25,6 +25,9 @@
         <button *ngIf="currentUser.role !== roles.User" mat-button routerLink="/category">
             <span>Category</span>
         </button>
+        <button *ngIf="currentUser.role !== roles.User" mat-button routerLink="/game/new">
+            <span>Add game</span>
+        </button>
         <div>
             <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Navbar menu">
                 <mat-icon>menu</mat-icon>
