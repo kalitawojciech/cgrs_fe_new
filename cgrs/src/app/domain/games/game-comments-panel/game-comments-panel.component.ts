@@ -32,4 +32,8 @@ export class GameCommentsPanelComponent implements OnInit {
       }
     });
   }
+
+  canDelete(comment: GameCommentResponse): boolean {
+    return this.currentUser && this.currentUser.id === comment.user.id;
+  }
 }

@@ -1,5 +1,20 @@
 mat-card {
+   width: auto;
    margin-bottom: 12px;
+
+   mat-card-subtitle {
+      width: 100% !important;
+      display: flex;
+      align-items: center;
+   }
+
+   .delete-button {
+      display: flex;
+      
+      button {
+         margin: 0 0;
+      }
+   }
 }
 
 ::ng-deep .mat-card-header-text {

@@ -1,7 +1,15 @@
 <mat-card>
    <mat-card-header>
       <mat-card-title-group>
-         <mat-card-subtitle>{{ comment.user.nick }}</mat-card-subtitle>
+         <mat-card-subtitle>
+            <span>{{ comment.user.nick }}</span>
+            <span style="flex: 1 1 auto;"></span>
+            <div *ngIf="canDelete" class="delete-button">
+               <button mat-icon-button color="warn" aria-label="Delete" (click)="onDelete()">
+                  <mat-icon>delete</mat-icon>
+               </button>
+            </div>
+         </mat-card-subtitle>
          <mat-card-title>{{ comment.message }}</mat-card-title>
       </mat-card-title-group>
    </mat-card-header>

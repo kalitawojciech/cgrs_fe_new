@@ -10,9 +10,31 @@
             </button>
         </div>
     </div>
-    <div>
-        <p>{{ gameData.name }}</p>
-        <p>{{ gameData.description }}</p>
+    <div class="game-info">
+        <mat-card>
+            <mat-card-header>
+               <mat-card-title-group>
+                    <mat-card-title>
+                        <h1>{{ gameData.name }}</h1>
+                        <mat-chip-list *ngIf="gameData.averageScore" class="score-chip">
+                            <mat-chip [style.background-color]="getScoreColor()">
+                                <span>{{ gameData.averageScore }}</span>
+                            </mat-chip>
+                        </mat-chip-list>
+                    </mat-card-title>
+                    <mat-card-subtitle>
+                        <mat-chip-list>
+                            <mat-chip>
+                                <span>{{ gameData.category.name }}</span>
+                            </mat-chip>
+                        </mat-chip-list>
+                    </mat-card-subtitle>
+               </mat-card-title-group>
+            </mat-card-header>
+            <mat-card-content>
+                <span>{{ gameData.description }}</span>
+            </mat-card-content>
+         </mat-card>
     </div>
 
     <app-game-comments-panel [gameId]="gameData.id" [currentUser]="currentUser" [gameComments]="gameData.gamesComments"></app-game-comments-panel>

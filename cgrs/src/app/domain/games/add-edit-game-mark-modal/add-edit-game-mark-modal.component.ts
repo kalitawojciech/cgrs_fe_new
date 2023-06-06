@@ -39,8 +39,9 @@ export class AddEditGameMarkModalComponent implements OnInit {
 
     if (this.isEditMode) {
       this.updateGameMark();
+    } else {
+      this.addNewGameMark();
     }
-    this.addNewGameMark();
   }
 
   private addNewGameMark() {

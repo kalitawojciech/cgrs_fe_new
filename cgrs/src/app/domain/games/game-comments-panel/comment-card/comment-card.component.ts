@@ -8,10 +8,15 @@ import { GameCommentResponse } from 'src/app/core/services/api.service';
 })
 export class CommentCardComponent implements OnInit {
   @Input() comment: GameCommentResponse;
+  @Input() canDelete: boolean = false;
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  onDelete(): void {
+    
   }
 
 }

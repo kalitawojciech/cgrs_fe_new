@@ -74,4 +74,18 @@ export class GameDetailsComponent implements OnInit {
       }
     })
   }
+
+  getScoreColor(): string {
+    if (this.gameData.averageScore > 84) {
+      return '#005C27'
+    } else if (this.gameData.averageScore > 69) {
+      return '#59A173'
+    } else if (this.gameData.averageScore > 49) {
+      return '#FFE188'
+    } else if (this.gameData.averageScore > 25) {
+      return '#FEBE70'
+    } 
+
+    return '#790002'
+  }
 }
