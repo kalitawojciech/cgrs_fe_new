@@ -2,6 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { first } from 'rxjs';
+import { ModalAction } from 'src/app/core/constants';
 import { CreateGameCommentRequest, GameCommentResponse, GamesCommentsService, UpdateGameCommentRequest } from 'src/app/core/services/api.service';
 
 @Component({
@@ -38,8 +39,9 @@ export class AddEditGameCommentModalComponent implements OnInit {
 
     if (this.isEditMode) {
       this.updateGameMark();
+    } else {
+      this.addNewGameMark();
     }
-    this.addNewGameMark();
   }
 
   private addNewGameMark() {
@@ -50,7 +52,7 @@ export class AddEditGameCommentModalComponent implements OnInit {
 
     this.gamesCommentsService.postGamesComments(query)
       .pipe(first())
-      .subscribe(() => this.dialogRef.close());
+      .subscribe(() => this.dialogRef.close(ModalAction.Submited));
   }
 
   private updateGameMark() {
@@ -62,11 +64,11 @@ export class AddEditGameCommentModalComponent implements OnInit {
 
     this.gamesCommentsService.putGamesComments(query)
       .pipe(first())
-      .subscribe(() => this.dialogRef.close());
+      .subscribe(() => this.dialogRef.close(ModalAction.Submited));
   }
 
   onCancel(): void {
-    this.dialogRef.close();
+    this.dialogRef.close(ModalAction.Cancelled);
   }
 
   get gameCommentFormControl() {

@@ -75,6 +75,10 @@ export class GameDetailsComponent implements OnInit {
     })
   }
 
+  refresh(): void {
+    this.getGameDetails(this.gameData.id);
+  }
+
   getScoreColor(): string {
     if (this.gameData.averageScore > 84) {
       return '#005C27'

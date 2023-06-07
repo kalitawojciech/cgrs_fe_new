@@ -37,5 +37,5 @@
          </mat-card>
     </div>
 
-    <app-game-comments-panel [gameId]="gameData.id" [currentUser]="currentUser" [gameComments]="gameData.gamesComments"></app-game-comments-panel>
+    <app-game-comments-panel [gameId]="gameData.id" [currentUser]="currentUser" [gameComments]="gameData.gamesComments" (refresh)="refresh()"></app-game-comments-panel>
 </div>
