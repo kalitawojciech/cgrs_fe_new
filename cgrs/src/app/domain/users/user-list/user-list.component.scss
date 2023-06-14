@@ -1,0 +1,25 @@
+@import '~@angular/material/theming';
+
+.user-list__container {
+    width: 90%;
+    margin: 50px 5% 0 5%;
+
+    table {
+        @include mat-elevation(8);
+        width: 100%;
+        background-color: white;
+
+        th {
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .mat-column-nick {
+            width: 30%
+        }
+
+        .mat-column-email {
+            width: 60%
+        }
+    }
+}

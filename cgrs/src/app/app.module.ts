@@ -31,6 +31,7 @@ import { RecommendGamesListComponent } from './domain/games/recommend-games-list
 import { GameCommentsPanelComponent } from './domain/games/game-comments-panel/game-comments-panel.component';
 import { AddEditGameCommentModalComponent } from './domain/games/add-edit-game-comment-modal/add-edit-game-comment-modal.component';
 import { CommentCardComponent } from './domain/games/game-comments-panel/comment-card/comment-card.component';
+import { UserListComponent } from './domain/users/user-list/user-list.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { CommentCardComponent } from './domain/games/game-comments-panel/comment
     GameCommentsPanelComponent,
     AddEditGameCommentModalComponent,
     CommentCardComponent,
+    UserListComponent,
   ],
   imports: [
     AppRoutingModule,

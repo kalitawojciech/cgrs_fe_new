@@ -1,0 +1,20 @@
+
+<div class="user-list__container">
+   <table mat-table [dataSource]="dataSource">
+      <ng-container matColumnDef="nick">
+         <th mat-header-cell *matHeaderCellDef>Nick</th>
+         <td mat-cell *matCellDef="let row">{{ row.nick }}</td>
+      </ng-container>
+      <ng-container matColumnDef="email">
+         <th mat-header-cell *matHeaderCellDef>Email</th>
+         <td mat-cell *matCellDef="let row">{{ row.email }}</td>
+     </ng-container>
+     <ng-container matColumnDef="role">
+         <th mat-header-cell *matHeaderCellDef>Role</th>
+         <td mat-cell *matCellDef="let row">{{ row.role }}</td>
+      </ng-container>
+       
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+   </table>
+</div>

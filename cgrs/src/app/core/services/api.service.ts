@@ -460,10 +460,27 @@ export class UsersService extends BaseService {
   }
 
   /**
+   * @param nickOrEmail (optional) (API name: NickOrEmail)
+   * @param pageNumber (optional) (API name: PageNumber)
+   * @param pageSize (optional) (API name: PageSize)
    * @return Success
    */
-  getUsers(config?: any): Observable<UserInfoResponse[]> {
+  getUsers(
+    nickOrEmail: string | null | undefined,
+    pageNumber: number | null | undefined,
+    pageSize: number | null | undefined,
+    config?: any
+  ): Observable<UserFullInfoResponsePagedResponse> {
     let url = '/Users?';
+    if (nickOrEmail !== undefined) {
+      url += 'NickOrEmail=' + encodeURIComponent('' + nickOrEmail) + '&';
+    }
+    if (pageNumber !== undefined) {
+      url += 'PageNumber=' + encodeURIComponent('' + pageNumber) + '&';
+    }
+    if (pageSize !== undefined) {
+      url += 'PageSize=' + encodeURIComponent('' + pageSize) + '&';
+    }
 
     return this.$get(url, config);
   }
@@ -617,6 +634,18 @@ export interface UpdateGameMarkRequest {
 export interface CreateTagRequest {
   name?: string;
   description?: string;
+}
+
+export interface UserFullInfoResponse {
+  id?: string;
+  email?: string;
+  nick?: string;
+  role?: string;
+}
+
+export interface UserFullInfoResponsePagedResponse {
+  results?: UserFullInfoResponse[];
+  totalDataCount?: number;
 }
 
 export interface RegisterUserRequest {

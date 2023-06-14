@@ -12,6 +12,7 @@ import { AccessForbiddenPageComponent } from './core/pages/access-forbidden-page
 import { Role } from './core/constants';
 import { GamesListComponent } from './domain/games/games-list/games-list.component';
 import { RecommendGamesListComponent } from './domain/games/recommend-games-list/recommend-games-list.component';
+import { UserListComponent } from './domain/users/user-list/user-list.component';
 
 const routes: Routes = [
   {
@@ -33,6 +34,12 @@ const routes: Routes = [
   {
     path: 'recommend',
     component: RecommendGamesListComponent,
+  },
+  {
+    path: 'users',
+    component: UserListComponent,
+    canActivate: [AuthGuard],
+    data: { roles: [Role.Admin] }
   },
   {
     path: 'category',
