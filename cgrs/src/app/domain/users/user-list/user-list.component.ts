@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Subject, takeUntil } from 'rxjs';
+import { Subject, takeUntil, tap } from 'rxjs';
 import { UserFullInfoResponse, UsersService } from 'src/app/core/services/api.service';
 import { SpinnerService } from 'src/app/core/services/spinner.service';
 
@@ -16,7 +16,7 @@ export class UserListComponent implements OnInit {
   users: UserFullInfoResponse[] = [];
   dataSource: MatTableDataSource<UserFullInfoResponse>;
 
-  pageSize: number = 4;
+  pageSize: number = 10;
   pageNumber: number = 0;
   totalDataCount: number;
 
@@ -33,6 +33,22 @@ export class UserListComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUsers();
+  }
+
+  ngAfterViewInit(): void {
+    this.paginator.page
+    .pipe(
+      tap((change) => {
+        this.pageNumber = change.pageIndex;
+        this.getUsers();
+      })
+    )
+    .subscribe();
+  }
+
+  ngOnDestroy(): void {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
   }
 
   private getUsers(): void {
