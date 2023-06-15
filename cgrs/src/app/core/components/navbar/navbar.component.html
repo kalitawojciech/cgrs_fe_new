@@ -22,9 +22,6 @@
     </button>
     <span style="flex: 1 1 auto;"></span>
     <div *ngIf="currentUser" class="navbar-container">
-        <button *ngIf="currentUser.role !== roles.User" mat-button routerLink="/category">
-            <span>Category</span>
-        </button>
         <button *ngIf="currentUser.role !== roles.User" mat-button routerLink="/game/new">
             <span>Add game</span>
         </button>
@@ -33,6 +30,12 @@
                 <mat-icon>menu</mat-icon>
             </button>
             <mat-menu #menu="matMenu">
+                <button *ngIf="currentUser.role !== roles.User" mat-menu-item routerLink="/category">
+                    <span>Categories</span>
+                </button>
+                <button *ngIf="currentUser.role !== roles.User" mat-menu-item routerLink="/users">
+                    <span>Users</span>
+                </button>
                 <button mat-menu-item (click)="logOut()">
                     <mat-icon>exit_to_app</mat-icon>
                     <span>Log out</span>
