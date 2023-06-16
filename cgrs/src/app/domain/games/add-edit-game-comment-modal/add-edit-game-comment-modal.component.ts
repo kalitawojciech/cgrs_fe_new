@@ -28,7 +28,7 @@ export class AddEditGameCommentModalComponent implements OnInit {
 
     if (this.data.gameComment != null) {
       this.isEditMode = true;
-      this.gameCommentForm.patchValue({ score: this.data.gameComment.message });
+      this.gameCommentForm.patchValue({ message: this.data.gameComment.message });
     }
   }
 

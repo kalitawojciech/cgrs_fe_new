@@ -4,7 +4,12 @@
          <mat-card-subtitle>
             <span>{{ comment.user.nick }}</span>
             <span style="flex: 1 1 auto;"></span>
-            <div *ngIf="canDelete" class="delete-button">
+            <div *ngIf="isCommentCreator" class="delete-button">
+               <button mat-icon-button color="primary" aria-label="Edit" (click)="onEdit()">
+                  <mat-icon>edit</mat-icon>
+               </button>
+            </div>
+            <div *ngIf="isCommentCreator" class="delete-button">
                <button mat-icon-button color="warn" aria-label="Delete" (click)="onDelete()">
                   <mat-icon>delete</mat-icon>
                </button>

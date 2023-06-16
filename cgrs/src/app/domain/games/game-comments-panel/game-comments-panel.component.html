@@ -8,6 +8,6 @@
         </div>
     </div>
     <div *ngFor="let comment of gameComments">
-        <app-comment-card [comment]="comment" [canDelete]="canDelete(comment)" (deleted)="refreshData()"></app-comment-card>
+        <app-comment-card [comment]="comment" [isCommentCreator]="canDelete(comment)" (refresh)="refreshData()"></app-comment-card>
     </div>
 </div>
