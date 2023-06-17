@@ -4,6 +4,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { first } from 'rxjs';
 import { ModalAction } from 'src/app/core/constants';
 import { CreateGameCommentRequest, GameCommentResponse, GamesCommentsService, UpdateGameCommentRequest } from 'src/app/core/services/api.service';
+import { inputWhiteSpaceValidator } from 'src/app/core/validators';
 
 @Component({
   selector: 'app-add-edit-game-comment-modal',
@@ -23,7 +24,7 @@ export class AddEditGameCommentModalComponent implements OnInit {
 
   ngOnInit(): void {
     this.gameCommentForm = this.formBuilder.group({
-      message: new FormControl(''),
+      message: new FormControl('', [inputWhiteSpaceValidator()]),
     });
 
     if (this.data.gameComment != null) {

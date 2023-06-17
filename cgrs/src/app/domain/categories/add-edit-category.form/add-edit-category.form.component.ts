@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subject, first, takeUntil } from 'rxjs';
 import { CategoriesService, CreateCategoryRequest, UpdateCategoryRequest } from 'src/app/core/services/api.service';
+import { inputWhiteSpaceValidator } from 'src/app/core/validators';
 
 @Component({
   selector: 'app-add-edit-category.form',
@@ -29,8 +30,8 @@ export class AddEditCategoryComponent implements OnInit {
     this.isEditMode = !!this.id;
 
     this.categoryForm = this.formBuilder.group({
-      name: new FormControl(''),
-      description: new FormControl(''),
+      name: new FormControl('', [inputWhiteSpaceValidator()]),
+      description: new FormControl('', [inputWhiteSpaceValidator()]),
     });
 
     if (this.isEditMode) {

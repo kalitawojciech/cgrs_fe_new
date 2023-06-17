@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Subject, first, takeUntil } from 'rxjs';
 import { CategoriesService, CategoryInfoResponse } from 'src/app/core/services/api.service';
 import { CreateGameRequest, GamesService, UpdateGameRequest } from 'src/app/core/services/api.service';
+import { inputWhiteSpaceValidator } from 'src/app/core/validators';
 
 @Component({
   selector: 'app-add-edit-game',
@@ -36,8 +37,8 @@ export class AddEditGameComponent implements OnInit, OnDestroy {
     this.isEditMode = !!this.id;
 
     this.gameForm = this.formBuilder.group({
-      name: new FormControl(''),
-      description: new FormControl(''),
+      name: new FormControl('', [inputWhiteSpaceValidator()]),
+      description: new FormControl('', [inputWhiteSpaceValidator()]),
       categoryId: new FormControl(null),
       isAdultOnly: new FormControl(false),
     })

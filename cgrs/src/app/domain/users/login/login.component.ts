@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { UserAuthenticationRequest } from 'src/app/core/services/api.service';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { SpinnerService } from 'src/app/core/services/spinner.service';
+import { inputWhiteSpaceValidator } from 'src/app/core/validators';
 
 @Component({
   selector: 'app-login',
@@ -20,8 +21,8 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
-      email: new FormControl(''),
-      password: new FormControl('')
+      email: new FormControl('', [inputWhiteSpaceValidator()]),
+      password: new FormControl('', [inputWhiteSpaceValidator()])
     });
   }
 

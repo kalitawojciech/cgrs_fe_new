@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { first } from 'rxjs';
 import { RegisterUserRequest, UsersService } from 'src/app/core/services/api.service';
 import { SpinnerService } from 'src/app/core/services/spinner.service';
+import { inputWhiteSpaceValidator } from 'src/app/core/validators';
 
 @Component({
   selector: 'app-registration',
@@ -22,9 +23,9 @@ export class RegistrationComponent implements OnInit {
 
   ngOnInit(): void {
     this.registrationForm = this.formBuilder.group({
-      email: new FormControl(''),
-      nick: new FormControl(''),
-      password: new FormControl(''),
+      email: new FormControl('', [inputWhiteSpaceValidator()]),
+      nick: new FormControl('', [inputWhiteSpaceValidator()]),
+      password: new FormControl('', [inputWhiteSpaceValidator()]),
       birthDate: new FormControl(''),
     })
   }
