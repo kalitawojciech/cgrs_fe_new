@@ -11,3 +11,7 @@ app-game-card {
 .card-table-container > app-game-card {
    flex-basis: 50%;
 }
+
+mat-paginator {
+   background-color: #fafafa !important;
+}
