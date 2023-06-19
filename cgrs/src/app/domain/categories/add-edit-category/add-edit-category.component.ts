@@ -6,9 +6,9 @@ import { CategoriesService, CreateCategoryRequest, UpdateCategoryRequest } from 
 import { inputWhiteSpaceValidator } from 'src/app/core/validators';
 
 @Component({
-  selector: 'app-add-edit-category.form',
-  templateUrl: './add-edit-category.form.component.html',
-  styleUrls: ['./add-edit-category.form.component.scss']
+  selector: 'app-add-edit-category',
+  templateUrl: './add-edit-category.component.html',
+  styleUrls: ['./add-edit-category.component.scss']
 })
 export class AddEditCategoryComponent implements OnInit {
   categoryForm: FormGroup;

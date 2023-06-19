@@ -441,10 +441,23 @@ export class TagsService extends BaseService {
   postTags(
     body: CreateTagRequest | null | undefined,
     config?: any
-  ): Observable<unknown> {
+  ): Observable<Unit> {
     let url = '/Tags?';
 
     return this.$post(url, body, config);
+  }
+
+  /**
+   * @param body (optional)
+   * @return Success
+   */
+  putTags(
+    body: UpdateTagRequest | null | undefined,
+    config?: any
+  ): Observable<Unit> {
+    let url = '/Tags?';
+
+    return this.$put(url, body, config);
   }
 }
 
@@ -633,7 +646,11 @@ export interface UpdateGameMarkRequest {
 
 export interface CreateTagRequest {
   name?: string;
-  description?: string;
+}
+
+export interface UpdateTagRequest {
+  id?: string;
+  name?: string;
 }
 
 export interface UserFullInfoResponse {

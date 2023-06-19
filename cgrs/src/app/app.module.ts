@@ -12,7 +12,7 @@ import { environment } from 'src/environments/environment';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularMaterialModule } from './angular-material.module';
 import { NavbarComponent } from './core/components/navbar/navbar.component';
-import { AddEditCategoryComponent } from './domain/categories/add-edit-category.form/add-edit-category.form.component';
+import { AddEditCategoryComponent } from './domain/categories/add-edit-category/add-edit-category.component';
 import { JwtInterceptor } from './core/helpers/jwt.interceptor';
 import { CategoriesListComponent } from './domain/categories/categories-list/categories-list.component';
 import { RegistrationComponent } from './domain/users/registration/registration.component';
@@ -32,6 +32,7 @@ import { GameCommentsPanelComponent } from './domain/games/game-comments-panel/g
 import { AddEditGameCommentModalComponent } from './domain/games/add-edit-game-comment-modal/add-edit-game-comment-modal.component';
 import { CommentCardComponent } from './domain/games/game-comments-panel/comment-card/comment-card.component';
 import { UserListComponent } from './domain/users/user-list/user-list.component';
+import { AddEditTagComponent } from './domain/tags/add-edit-tag/add-edit-tag.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { UserListComponent } from './domain/users/user-list/user-list.component'
     AddEditGameCommentModalComponent,
     CommentCardComponent,
     UserListComponent,
+    AddEditTagComponent,
   ],
   imports: [
     AppRoutingModule,

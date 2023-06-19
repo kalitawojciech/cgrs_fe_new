@@ -1,0 +1,15 @@
+<div class="container">
+   <form class="form-group" [formGroup]="tagForm">
+       <mat-form-field appearance="fill">
+           <mat-label>Name</mat-label>
+           <input type="text" matInput class="form-control" required formControlName="name">
+           <mat-error *ngIf="tagFormControl.name.touched && tagFormControl.name.errors">
+               Tag name is <strong>required</strong>
+           </mat-error>
+       </mat-form-field>
+       <div class="button-container">
+           <button type="submit" color="primary" mat-raised-button [disabled]="!tagForm.valid" (click)="onSubmit()">{{isEditMode ? 'Save changes' : 'Add new tag'}}</button>
+           <button mat-raised-button (click)="onCancel()">Cancel</button>
+       </div>
+   </form>
+</div>

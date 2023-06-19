@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './domain/users/login/login.component';
-import { AddEditCategoryComponent } from './domain/categories/add-edit-category.form/add-edit-category.form.component';
+import { AddEditCategoryComponent } from './domain/categories/add-edit-category/add-edit-category.component';
 import { AuthGuard } from './core/guards/auth.guard';
 import { CategoriesListComponent } from './domain/categories/categories-list/categories-list.component';
 import { RegistrationComponent } from './domain/users/registration/registration.component';
@@ -13,6 +13,7 @@ import { Role } from './core/constants';
 import { GamesListComponent } from './domain/games/games-list/games-list.component';
 import { RecommendGamesListComponent } from './domain/games/recommend-games-list/recommend-games-list.component';
 import { UserListComponent } from './domain/users/user-list/user-list.component';
+import { AddEditTagComponent } from './domain/tags/add-edit-tag/add-edit-tag.component';
 
 const routes: Routes = [
   {
@@ -72,6 +73,24 @@ const routes: Routes = [
   {
     path: 'game/edit/:id',
     component: AddEditGameComponent,
+    canActivate: [AuthGuard],
+    data: { roles: [Role.Admin] }
+  },
+  {
+    path: 'tag',
+    component: CategoriesListComponent,
+    canActivate: [AuthGuard],
+    data: { roles: [Role.Admin] }
+  },
+  {
+    path: 'tag/new',
+    component: AddEditTagComponent,
+    canActivate: [AuthGuard],
+    data: { roles: [Role.Admin] }
+  },
+  {
+    path: 'tag/edit/:id',
+    component: AddEditTagComponent,
     canActivate: [AuthGuard],
     data: { roles: [Role.Admin] }
   },
