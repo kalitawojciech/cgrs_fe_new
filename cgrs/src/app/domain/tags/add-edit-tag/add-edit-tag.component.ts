@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Subject, first } from 'rxjs';
+import { Subject, first, takeUntil } from 'rxjs';
 import { CreateTagRequest, TagsService, UpdateTagRequest } from 'src/app/core/services/api.service';
 import { inputWhiteSpaceValidator } from 'src/app/core/validators';
 
@@ -37,11 +37,11 @@ export class AddEditTagComponent implements OnInit {
     })
 
     if (this.isEditMode) {
-      // this.tagsService.getTagsId(this.id)
-      //   .pipe(
-      //     first(),
-      //     takeUntil(this.unsubscribe$))
-      //   .subscribe(x => this.tagForm.patchValue(x));
+      this.tagsService.getTagsId(this.id)
+        .pipe(
+          first(),
+          takeUntil(this.unsubscribe$))
+        .subscribe(x => this.tagForm.patchValue(x));
     }
   }
 
@@ -66,7 +66,9 @@ export class AddEditTagComponent implements OnInit {
 
     this.tagsService.postTags(query)
       .pipe(first())
-      .subscribe();
+      .subscribe(() => {
+        this.router.navigate(['tag']);
+      });
   }
 
   private editTag() {
@@ -77,7 +79,9 @@ export class AddEditTagComponent implements OnInit {
 
     this.tagsService.putTags(query)
       .pipe(first())
-      .subscribe();
+      .subscribe(() => {
+        this.router.navigate(['tag']);
+      });
   }
 
   onCancel(): void {

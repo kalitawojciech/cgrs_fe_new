@@ -435,6 +435,17 @@ export class TagsService extends BaseService {
   }
 
   /**
+   * @param id
+   * @return Success
+   */
+  getTagsId(id: string, config?: any): Observable<TagInfoResponse> {
+    let url = '/Tags/{id}?';
+    url = url.replace('{id}', encodeURIComponent('' + id));
+
+    return this.$get(url, config);
+  }
+
+  /**
    * @param body (optional)
    * @return Success
    */
@@ -651,6 +662,12 @@ export interface CreateTagRequest {
 export interface UpdateTagRequest {
   id?: string;
   name?: string;
+}
+
+export interface TagInfoResponse {
+  id?: string;
+  name?: string;
+  isActive?: boolean;
 }
 
 export interface UserFullInfoResponse {

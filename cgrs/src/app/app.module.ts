@@ -33,6 +33,7 @@ import { AddEditGameCommentModalComponent } from './domain/games/add-edit-game-c
 import { CommentCardComponent } from './domain/games/game-comments-panel/comment-card/comment-card.component';
 import { UserListComponent } from './domain/users/user-list/user-list.component';
 import { AddEditTagComponent } from './domain/tags/add-edit-tag/add-edit-tag.component';
+import { TagsListComponent } from './domain/tags/tags-list/tags-list.component';
 
 @NgModule({
   declarations: [
@@ -58,6 +59,7 @@ import { AddEditTagComponent } from './domain/tags/add-edit-tag/add-edit-tag.com
     CommentCardComponent,
     UserListComponent,
     AddEditTagComponent,
+    TagsListComponent,
   ],
   imports: [
     AppRoutingModule,
