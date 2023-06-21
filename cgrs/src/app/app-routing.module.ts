@@ -14,6 +14,7 @@ import { GamesListComponent } from './domain/games/games-list/games-list.compone
 import { RecommendGamesListComponent } from './domain/games/recommend-games-list/recommend-games-list.component';
 import { UserListComponent } from './domain/users/user-list/user-list.component';
 import { AddEditTagComponent } from './domain/tags/add-edit-tag/add-edit-tag.component';
+import { TagsListComponent } from './domain/tags/tags-list/tags-list.component';
 
 const routes: Routes = [
   {
@@ -78,7 +79,7 @@ const routes: Routes = [
   },
   {
     path: 'tag',
-    component: CategoriesListComponent,
+    component: TagsListComponent,
     canActivate: [AuthGuard],
     data: { roles: [Role.Admin] }
   },

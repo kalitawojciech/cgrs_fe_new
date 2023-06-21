@@ -1,0 +1,31 @@
+@import '~@angular/material/theming';
+
+.tags-list__container {
+    width: 60%;
+    margin: 0 20% 20%;
+    
+    .add-button-container {
+        display: flex;
+        flex-direction: row-reverse;
+        margin-bottom: 24px;
+    }
+
+    table {
+        @include mat-elevation(8);
+        width: 100%;
+        background-color: white;
+
+        th {
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .mat-column-action-buttons {
+            width: 1%
+        }
+    }
+}
+
+.mat-success {
+    color: green;
+}

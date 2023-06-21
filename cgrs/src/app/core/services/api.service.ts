@@ -435,6 +435,15 @@ export class TagsService extends BaseService {
   }
 
   /**
+   * @return Success
+   */
+  getTags(config?: any): Observable<TagInfoResponse[]> {
+    let url = '/Tags?';
+
+    return this.$get(url, config);
+  }
+
+  /**
    * @param id
    * @return Success
    */
