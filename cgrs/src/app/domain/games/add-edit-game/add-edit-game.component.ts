@@ -1,11 +1,14 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { COMMA, ENTER } from '@angular/cdk/keycodes';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Location } from '@angular/common';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Subject, first, takeUntil } from 'rxjs';
-import { CategoriesService, CategoryInfoResponse } from 'src/app/core/services/api.service';
+import { Observable, Subject, first, takeUntil } from 'rxjs';
+import { CategoriesService, CategoryInfoResponse, TagInfoResponse, TagsService } from 'src/app/core/services/api.service';
 import { CreateGameRequest, GamesService, UpdateGameRequest } from 'src/app/core/services/api.service';
 import { inputWhiteSpaceValidator } from 'src/app/core/validators';
+import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
+import { MatChipInputEvent } from '@angular/material/chips';
 
 @Component({
   selector: 'app-add-edit-game',
@@ -18,8 +21,14 @@ export class AddEditGameComponent implements OnInit, OnDestroy {
   id: string;
   loading = false;
   submitted = false;
+  tagCtrl = new FormControl('');
+
+  @ViewChild('tagInput') tagInput: ElementRef<HTMLInputElement>;
 
   categories: CategoryInfoResponse[] = [];
+  tags: TagInfoResponse[] = [];
+  filteredTags: Observable<TagInfoResponse[]>;
+  separatorKeysCodes: number[] = [ENTER, COMMA];
 
   private unsubscribe$ = new Subject<void>();
 
@@ -29,6 +38,7 @@ export class AddEditGameComponent implements OnInit, OnDestroy {
     private router: Router,
     private gamesService: GamesService,
     private categoriesService: CategoriesService,
+    private tagsService: TagsService,
     private location: Location,
   ) { }
 
@@ -45,9 +55,12 @@ export class AddEditGameComponent implements OnInit, OnDestroy {
 
     this.categoriesService.getCategories()
       .pipe(takeUntil(this.unsubscribe$))
-      .subscribe(x => this.categories = x);
+      .subscribe(data => this.categories = data);
 
-    
+    this.tagsService.getTags()
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe(tags => this.tags = tags);
+
     if (this.isEditMode) {
       this.gamesService.getGamesId(this.id)
         .pipe(
@@ -109,5 +122,17 @@ export class AddEditGameComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.unsubscribe$.next();
     this.unsubscribe$.complete();
+  }
+
+  selectTag(event: MatAutocompleteSelectedEvent): void {
+    console.log(event.option);
+  }
+
+  addTag(event: MatChipInputEvent): void {
+
+  }
+
+  removeTag(tag): void {
+
   }
 }

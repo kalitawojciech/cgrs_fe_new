@@ -33,6 +33,9 @@
                 <button *ngIf="currentUser.role !== roles.User" mat-menu-item routerLink="/category">
                     <span>Categories</span>
                 </button>
+                <button *ngIf="currentUser.role !== roles.User" mat-menu-item routerLink="/tag">
+                    <span>Tags</span>
+                </button>
                 <button *ngIf="currentUser.role !== roles.User" mat-menu-item routerLink="/users">
                     <span>Users</span>
                 </button>

@@ -25,6 +25,30 @@
                 Category is <strong>required</strong>
             </mat-error>
         </mat-form-field>
+        <mat-form-field  appearance="fill">
+            <mat-label>Tags</mat-label>
+            <mat-chip-list #tagList aria-label="Tags selection">
+                <mat-chip *ngFor="let tag of tags" (removed)="removeTag(tag)">
+                    {{ tag.name }}
+                    <button matChipRemove [attr.aria.label]="'remove ' + tag">
+                        <mat-icon>cancel</mat-icon>
+                    </button>
+                </mat-chip>
+            </mat-chip-list>
+            <input
+                placeholder="New tag..."
+                #tagInput 
+                [formControl]="tagCtrl"
+                [matAutocomplete]="auto"
+                [matChipInputFor]="tagList" 
+                [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                (matChipInputTokenEnd)="addTag($event)">
+            <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selectTag($event)">
+                <mat-option *ngFor="let tag of filteredTags | async" [value]="tag">
+                    {{ tag.name }}
+                </mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
         <mat-checkbox formControlName="isAdultOnly">Is adult only</mat-checkbox>
         <div class="button-container">
             <button type="submit" color="primary" mat-raised-button [disabled]="!gameForm.valid" (click)="onSubmit()">{{isEditMode ? 'Save changes' : 'Add new'}}</button>
