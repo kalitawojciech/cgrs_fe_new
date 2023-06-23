@@ -572,6 +572,12 @@ export interface GameMarkResponse {
   userId?: string;
 }
 
+export interface TagInfoResponse {
+  id?: string;
+  name?: string;
+  isActive?: boolean;
+}
+
 export interface GameInfoResponse {
   id?: string;
   name?: string;
@@ -582,6 +588,7 @@ export interface GameInfoResponse {
   categoryId?: string;
   categoryName?: string;
   gameMarkResponse?: GameMarkResponse;
+  tagsResponse?: TagInfoResponse;
 }
 
 export interface CategoryPopulatedResponse {
@@ -597,6 +604,7 @@ export interface CreateGameRequest {
   description?: string;
   isAdultOnly?: boolean;
   categoryId?: string;
+  tagsIds?: string[];
 }
 
 export interface UpdateGameRequest {
@@ -671,12 +679,6 @@ export interface CreateTagRequest {
 export interface UpdateTagRequest {
   id?: string;
   name?: string;
-}
-
-export interface TagInfoResponse {
-  id?: string;
-  name?: string;
-  isActive?: boolean;
 }
 
 export interface UserFullInfoResponse {

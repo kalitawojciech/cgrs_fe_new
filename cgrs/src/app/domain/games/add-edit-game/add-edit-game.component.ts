@@ -27,6 +27,7 @@ export class AddEditGameComponent implements OnInit, OnDestroy {
 
   categories: CategoryInfoResponse[] = [];
   tags: TagInfoResponse[] = [];
+  selectedTags: TagInfoResponse[] = [];
   filteredTags: Observable<TagInfoResponse[]>;
   separatorKeysCodes: number[] = [ENTER, COMMA];
 
@@ -59,14 +60,17 @@ export class AddEditGameComponent implements OnInit, OnDestroy {
 
     this.tagsService.getTags()
       .pipe(takeUntil(this.unsubscribe$))
-      .subscribe(tags => this.tags = tags);
+      .subscribe(tags => {this.tags = tags; this.selectedTags = tags});
 
     if (this.isEditMode) {
       this.gamesService.getGamesId(this.id)
         .pipe(
           first(),
           takeUntil(this.unsubscribe$))
-        .subscribe(x => this.gameForm.patchValue(x));
+        .subscribe(x => {
+          this.gameForm.patchValue(x);
+          //this.selectedTags = x.tags;
+        });
     }
   }
 
@@ -85,16 +89,22 @@ export class AddEditGameComponent implements OnInit, OnDestroy {
   }
 
   private createGame() {
+    var tagsIds = this.selectedTags.map(tag => tag.id);
+    console.log(tagsIds);
+
     const query: CreateGameRequest = {
       name: this.gameForm.get('name').value,
       description: this.gameForm.get('description').value,
       categoryId: this.gameForm.get('categoryId').value,
-      isAdultOnly: this.gameForm.get('isAdultOnly').value
+      isAdultOnly: this.gameForm.get('isAdultOnly').value,
+      tagsIds: tagsIds,
     }
 
     this.gamesService.postGames(query)
       .pipe(first())
-      .subscribe();
+      .subscribe(() => {
+        this.router.navigate(['']);
+      });
   }
 
   private editGame() {
@@ -108,7 +118,9 @@ export class AddEditGameComponent implements OnInit, OnDestroy {
 
     this.gamesService.putGames(query)
       .pipe(first())
-      .subscribe();
+      .subscribe(() => {
+        this.router.navigate(['']);
+      });
   }
 
   onCancel(): void {

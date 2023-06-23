@@ -28,7 +28,7 @@
         <mat-form-field  appearance="fill">
             <mat-label>Tags</mat-label>
             <mat-chip-list #tagList aria-label="Tags selection">
-                <mat-chip *ngFor="let tag of tags" (removed)="removeTag(tag)">
+                <mat-chip *ngFor="let tag of selectedTags" (removed)="removeTag(tag)">
                     {{ tag.name }}
                     <button matChipRemove [attr.aria.label]="'remove ' + tag">
                         <mat-icon>cancel</mat-icon>
