@@ -643,6 +643,7 @@ export interface GamePopulatedResponse {
   category?: CategoryInfoResponse;
   gamesComments?: GameCommentResponse[];
   userGameMark?: GameMarkResponse;
+  gameTags?: TagInfoResponse[];
 }
 
 export interface GameNameResponse {

@@ -34,6 +34,13 @@
             <mat-card-content>
                 <span>{{ gameData.description }}</span>
             </mat-card-content>
+            <mat-card-content *ngIf="gameData.gameTags.length > 0">
+                <mat-chip-list class="tag-chip">
+                    <mat-chip *ngFor="let gameTag of gameData.gameTags">
+                        <span>{{ gameTag.name }}</span>
+                    </mat-chip>
+                </mat-chip-list>
+            </mat-card-content>
          </mat-card>
     </div>
 
