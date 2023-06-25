@@ -588,7 +588,7 @@ export interface GameInfoResponse {
   categoryId?: string;
   categoryName?: string;
   gameMarkResponse?: GameMarkResponse;
-  tagsResponse?: TagInfoResponse;
+  gameTags?: TagInfoResponse[];
 }
 
 export interface CategoryPopulatedResponse {
@@ -613,6 +613,7 @@ export interface UpdateGameRequest {
   description?: string;
   isAdultOnly?: boolean;
   categoryId?: string;
+  tagsIds?: string[];
 }
 
 export interface GameInfoResponsePagedResponse {

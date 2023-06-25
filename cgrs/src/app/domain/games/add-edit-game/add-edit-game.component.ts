@@ -1,14 +1,13 @@
-import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Location } from '@angular/common';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable, Subject, first, takeUntil } from 'rxjs';
+import { Observable, Subject, first, map, startWith, takeUntil } from 'rxjs';
 import { CategoriesService, CategoryInfoResponse, TagInfoResponse, TagsService } from 'src/app/core/services/api.service';
 import { CreateGameRequest, GamesService, UpdateGameRequest } from 'src/app/core/services/api.service';
 import { inputWhiteSpaceValidator } from 'src/app/core/validators';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
-import { MatChipInputEvent } from '@angular/material/chips';
+import { SpinnerService } from 'src/app/core/services/spinner.service';
 
 @Component({
   selector: 'app-add-edit-game',
@@ -29,7 +28,6 @@ export class AddEditGameComponent implements OnInit, OnDestroy {
   tags: TagInfoResponse[] = [];
   selectedTags: TagInfoResponse[] = [];
   filteredTags: Observable<TagInfoResponse[]>;
-  separatorKeysCodes: number[] = [ENTER, COMMA];
 
   private unsubscribe$ = new Subject<void>();
 
@@ -41,7 +39,13 @@ export class AddEditGameComponent implements OnInit, OnDestroy {
     private categoriesService: CategoriesService,
     private tagsService: TagsService,
     private location: Location,
-  ) { }
+    private spinnerService: SpinnerService,
+  ) { 
+    this.filteredTags = this.tagCtrl.valueChanges.pipe(
+      startWith(null),
+      map((tagName: string | null) => this._filter(tagName))
+    );
+  }
 
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
@@ -60,16 +64,18 @@ export class AddEditGameComponent implements OnInit, OnDestroy {
 
     this.tagsService.getTags()
       .pipe(takeUntil(this.unsubscribe$))
-      .subscribe(tags => {this.tags = tags; this.selectedTags = tags});
+      .subscribe(tags => this.tags = tags);
 
     if (this.isEditMode) {
+      this.spinnerService.showSpinner();
       this.gamesService.getGamesId(this.id)
         .pipe(
           first(),
           takeUntil(this.unsubscribe$))
         .subscribe(x => {
           this.gameForm.patchValue(x);
-          //this.selectedTags = x.tags;
+          this.selectedTags = x.gameTags;
+          this.spinnerService.hideSpinner();
         });
     }
   }
@@ -90,7 +96,6 @@ export class AddEditGameComponent implements OnInit, OnDestroy {
 
   private createGame() {
     var tagsIds = this.selectedTags.map(tag => tag.id);
-    console.log(tagsIds);
 
     const query: CreateGameRequest = {
       name: this.gameForm.get('name').value,
@@ -108,12 +113,15 @@ export class AddEditGameComponent implements OnInit, OnDestroy {
   }
 
   private editGame() {
+    var tagsIds = this.selectedTags.map(tag => tag.id);
+
     const query: UpdateGameRequest = {
       id: this.id,
       name: this.gameForm.get('name').value,
       description: this.gameForm.get('description').value,
       categoryId: this.gameForm.get('categoryId').value,
-      isAdultOnly: this.gameForm.get('isAdultOnly').value
+      isAdultOnly: this.gameForm.get('isAdultOnly').value,
+      tagsIds: tagsIds,
     }
 
     this.gamesService.putGames(query)
@@ -137,14 +145,29 @@ export class AddEditGameComponent implements OnInit, OnDestroy {
   }
 
   selectTag(event: MatAutocompleteSelectedEvent): void {
-    console.log(event.option);
-  }
-
-  addTag(event: MatChipInputEvent): void {
-
+    if (event.option.value) {
+      this.selectedTags.push(event.option.value);
+      this.tagInput.nativeElement.value = '';
+      this.tagCtrl.setValue(null);
+    }
   }
 
   removeTag(tag): void {
+    const index = this.selectedTags.indexOf(tag);
 
+    if (index >= 0) {
+      this.selectedTags.splice(index, 1);
+    }
+  }
+
+  private _filter(tagName: string | TagInfoResponse | null): TagInfoResponse[] {
+    let unassignedTags = this.tags.filter(tag => !this.selectedTags.some(x => x.id === tag.id)).slice();
+    
+    if (tagName !== null && tagName instanceof String && tagName.trim() !== '') {
+      const filterValue = tagName.toLowerCase();
+      unassignedTags = unassignedTags.filter(tag => tag.name.toLowerCase().includes(filterValue));
+    }
+
+    return unassignedTags;
   }
 }
