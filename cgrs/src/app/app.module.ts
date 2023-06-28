@@ -34,6 +34,7 @@ import { CommentCardComponent } from './domain/games/game-comments-panel/comment
 import { UserListComponent } from './domain/users/user-list/user-list.component';
 import { AddEditTagComponent } from './domain/tags/add-edit-tag/add-edit-tag.component';
 import { TagsListComponent } from './domain/tags/tags-list/tags-list.component';
+import { ResetPasswordComponent } from './domain/users/reset-password/reset-password.component';
 
 @NgModule({
   declarations: [
@@ -60,6 +61,7 @@ import { TagsListComponent } from './domain/tags/tags-list/tags-list.component';
     UserListComponent,
     AddEditTagComponent,
     TagsListComponent,
+    ResetPasswordComponent,
   ],
   imports: [
     AppRoutingModule,
