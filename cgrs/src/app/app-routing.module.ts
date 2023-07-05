@@ -15,6 +15,7 @@ import { RecommendGamesListComponent } from './domain/games/recommend-games-list
 import { UserListComponent } from './domain/users/user-list/user-list.component';
 import { AddEditTagComponent } from './domain/tags/add-edit-tag/add-edit-tag.component';
 import { TagsListComponent } from './domain/tags/tags-list/tags-list.component';
+import { ResetPasswordComponent } from './domain/users/reset-password/reset-password.component';
 
 const routes: Routes = [
   {
@@ -32,6 +33,10 @@ const routes: Routes = [
   {
     path: 'register',
     component: RegistrationComponent,
+  },
+  {
+    path: 'reset-password',
+    component: ResetPasswordComponent,
   },
   {
     path: 'recommend',
