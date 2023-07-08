@@ -24,4 +24,12 @@ export class ChangePasswordComponent implements OnInit {
     })
   }
 
+  saveChanges(): void {
+
+  }
+
+  get passwordFormControl() {
+    return this.passwordForm.controls;
+  }
+
 }
