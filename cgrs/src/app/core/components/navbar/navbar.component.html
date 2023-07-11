@@ -39,6 +39,9 @@
                 <button *ngIf="currentUser.role !== roles.User" mat-menu-item routerLink="/users">
                     <span>Users</span>
                 </button>
+                <button mat-menu-item routerLink="/change-password">
+                    <span>Change password</span>
+                </button>
                 <button mat-menu-item (click)="logOut()">
                     <mat-icon>exit_to_app</mat-icon>
                     <span>Log out</span>

@@ -543,6 +543,19 @@ export class UsersService extends BaseService {
 
     return this.$post(url, body, config);
   }
+
+  /**
+   * @param body (optional)
+   * @return Success
+   */
+  putUsersChangePassword(
+    body: ChangePasswordRequest | null | undefined,
+    config?: any
+  ): Observable<Unit> {
+    let url = '/Users/change-password?';
+
+    return this.$put(url, body, config);
+  }
 }
 
 export interface CreateCategoryRequest {
@@ -712,4 +725,9 @@ export interface LoggedInUserResponse {
   email?: string;
   token?: string;
   role?: string;
+}
+
+export interface ChangePasswordRequest {
+  oldPassword?: string;
+  newPassword?: string;
 }

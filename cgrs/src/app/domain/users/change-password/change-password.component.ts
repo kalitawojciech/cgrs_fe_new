@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { first } from 'rxjs';
+import { ChangePasswordRequest, UsersService } from 'src/app/core/services/api.service';
 import { inputWhiteSpaceValidator } from 'src/app/core/validators';
 
 @Component({
@@ -15,6 +17,7 @@ export class ChangePasswordComponent implements OnInit {
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
+    private usersService: UsersService
   ) { }
 
   ngOnInit(): void {
@@ -25,7 +28,20 @@ export class ChangePasswordComponent implements OnInit {
   }
 
   saveChanges(): void {
+    if (this.passwordForm.invalid) {
+      return;
+    }
 
+    const query: ChangePasswordRequest = {
+      oldPassword: this.passwordForm.get('oldPassword').value,
+      newPassword: this.passwordForm.get('newPassword').value,
+    }
+
+    this.usersService.putUsersChangePassword(query)
+      .pipe(first())
+      .subscribe(() => {
+        this.router.navigate(['']);
+      });
   }
 
   get passwordFormControl() {
