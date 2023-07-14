@@ -36,6 +36,7 @@ import { AddEditTagComponent } from './domain/tags/add-edit-tag/add-edit-tag.com
 import { TagsListComponent } from './domain/tags/tags-list/tags-list.component';
 import { ResetPasswordComponent } from './domain/users/reset-password/reset-password.component';
 import { ChangePasswordComponent } from './domain/users/change-password/change-password.component';
+import { UserProfileComponent } from './domain/users/user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
@@ -64,6 +65,7 @@ import { ChangePasswordComponent } from './domain/users/change-password/change-p
     TagsListComponent,
     ResetPasswordComponent,
     ChangePasswordComponent,
+    UserProfileComponent,
   ],
   imports: [
     AppRoutingModule,
