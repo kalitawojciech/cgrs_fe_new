@@ -519,6 +519,15 @@ export class UsersService extends BaseService {
   }
 
   /**
+   * @return Success
+   */
+  getUsersMyData(config?: any): Observable<UserProfileResponse> {
+    let url = '/Users/my-data?';
+
+    return this.$get(url, config);
+  }
+
+  /**
    * @param body (optional)
    * @return Success
    */
@@ -706,6 +715,13 @@ export interface UserFullInfoResponse {
 export interface UserFullInfoResponsePagedResponse {
   results?: UserFullInfoResponse[];
   totalDataCount?: number;
+}
+
+export interface UserProfileResponse {
+  id?: string;
+  email?: string;
+  nick?: string;
+  birthDate?: Date;
 }
 
 export interface RegisterUserRequest {
