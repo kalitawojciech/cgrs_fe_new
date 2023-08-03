@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserProfileResponse, UsersService } from 'src/app/core/services/api.service';
 
 @Component({
   selector: 'app-user-profile',
@@ -6,8 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./user-profile.component.scss']
 })
 export class UserProfileComponent implements OnInit {
+  userData: UserProfileResponse;
 
-  constructor() { }
+  constructor(
+    private usersService: UsersService
+  ) { }
 
   ngOnInit(): void {
   }
