@@ -1,9 +1,9 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
-import { CategoryInfoResponse, TagInfoResponse, TagsService } from 'src/app/core/services/api.service';
+import { TagInfoResponse, TagsService } from 'src/app/core/services/api.service';
 import { SpinnerService } from 'src/app/core/services/spinner.service';
 
 @Component({
@@ -11,7 +11,7 @@ import { SpinnerService } from 'src/app/core/services/spinner.service';
   templateUrl: './tags-list.component.html',
   styleUrls: ['./tags-list.component.scss']
 })
-export class TagsListComponent implements OnInit {
+export class TagsListComponent implements OnInit, OnDestroy {
   displayedColumns: string[] = ['name', 'action-buttons'];
   tags: TagInfoResponse[] = [];
   dataSource: MatTableDataSource<TagInfoResponse>;
@@ -47,4 +47,8 @@ export class TagsListComponent implements OnInit {
     this.router.navigate(['new'], {relativeTo: this.route});
   }
 
+  ngOnDestroy(): void {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
+  }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -11,7 +11,7 @@ import { inputWhiteSpaceValidator } from 'src/app/core/validators';
   templateUrl: './add-edit-tag.component.html',
   styleUrls: ['./add-edit-tag.component.scss']
 })
-export class AddEditTagComponent implements OnInit {
+export class AddEditTagComponent implements OnInit, OnDestroy {
   tagForm: FormGroup;
   isEditMode: boolean;
   id: string;

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -12,7 +12,7 @@ import { SpinnerService } from 'src/app/core/services/spinner.service';
   templateUrl: './categories-list.component.html',
   styleUrls: ['./categories-list.component.scss']
 })
-export class CategoriesListComponent implements OnInit {
+export class CategoriesListComponent implements OnInit, OnDestroy {
   displayedColumns: string[] = ['name', 'description', 'status', 'action-buttons'];
   categories: CategoryInfoResponse[] = [];
   dataSource: MatTableDataSource<CategoryInfoResponse>;
@@ -59,5 +59,10 @@ export class CategoriesListComponent implements OnInit {
         this.dataSource.data = data;
         this.spinnerService.hideSpinner();
       });
+  }
+
+  ngOnDestroy(): void {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
   }
 }

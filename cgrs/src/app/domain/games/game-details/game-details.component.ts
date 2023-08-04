@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subject } from 'rxjs';
-import { first, takeUntil, tap } from 'rxjs/operators';
+import { first, takeUntil } from 'rxjs/operators';
 import { ModalAction, Role } from 'src/app/core/constants';
-import { GameMarkResponse, GamePopulatedResponse, GamesService, LoggedInUserResponse } from 'src/app/core/services/api.service';
+import { GamePopulatedResponse, GamesService, LoggedInUserResponse } from 'src/app/core/services/api.service';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { AddEditGameMarkModalComponent } from '../add-edit-game-mark-modal/add-edit-game-mark-modal.component';
 import { SpinnerService } from 'src/app/core/services/spinner.service';
@@ -14,7 +14,7 @@ import { SpinnerService } from 'src/app/core/services/spinner.service';
   templateUrl: './game-details.component.html',
   styleUrls: ['./game-details.component.scss']
 })
-export class GameDetailsComponent implements OnInit {
+export class GameDetailsComponent implements OnInit, OnDestroy {
   gameData: GamePopulatedResponse;
   currentUser: LoggedInUserResponse | null;
   roles = Role;
@@ -91,5 +91,10 @@ export class GameDetailsComponent implements OnInit {
     } 
 
     return '#790002'
+  }
+
+  ngOnDestroy(): void {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
   }
 }

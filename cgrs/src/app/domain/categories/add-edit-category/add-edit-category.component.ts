@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subject, first, takeUntil } from 'rxjs';
@@ -10,7 +10,7 @@ import { inputWhiteSpaceValidator } from 'src/app/core/validators';
   templateUrl: './add-edit-category.component.html',
   styleUrls: ['./add-edit-category.component.scss']
 })
-export class AddEditCategoryComponent implements OnInit {
+export class AddEditCategoryComponent implements OnInit, OnDestroy {
   categoryForm: FormGroup;
   isEditMode: boolean;
   id: string;
@@ -90,5 +90,10 @@ export class AddEditCategoryComponent implements OnInit {
 
   get categoryFormControl() {
     return this.categoryForm.controls;
+  }
+
+  ngOnDestroy(): void {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
   }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -11,7 +11,7 @@ import { SpinnerService } from 'src/app/core/services/spinner.service';
   templateUrl: './user-list.component.html',
   styleUrls: ['./user-list.component.scss']
 })
-export class UserListComponent implements OnInit {
+export class UserListComponent implements OnInit, OnDestroy {
   displayedColumns: string[] = ['nick', 'email', 'role'];
   users: UserFullInfoResponse[] = [];
   dataSource: MatTableDataSource<UserFullInfoResponse>;
