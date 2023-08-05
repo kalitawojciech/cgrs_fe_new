@@ -17,6 +17,7 @@ import { AddEditTagComponent } from './domain/tags/add-edit-tag/add-edit-tag.com
 import { TagsListComponent } from './domain/tags/tags-list/tags-list.component';
 import { ResetPasswordComponent } from './domain/users/reset-password/reset-password.component';
 import { ChangePasswordComponent } from './domain/users/change-password/change-password.component';
+import { UserProfileComponent } from './domain/users/user-profile/user-profile.component';
 
 const routes: Routes = [
   {
@@ -46,6 +47,11 @@ const routes: Routes = [
   {
     path: 'change-password',
     component: ChangePasswordComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'user/profile',
+    component: UserProfileComponent,
     canActivate: [AuthGuard],
   },
   {
