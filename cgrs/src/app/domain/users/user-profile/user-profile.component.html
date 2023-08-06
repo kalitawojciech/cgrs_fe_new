@@ -1,1 +1,16 @@
-<p>user-profile works!</p>
+<div class="page-container" *ngIf="userData">
+   <div class="user-info">
+      <mat-card>
+          <mat-card-header>
+             <mat-card-title-group>
+                  <mat-card-title>
+                      <h1>{{ userData.nick }}</h1>
+                  </mat-card-title>
+                  <mat-card-subtitle>
+                     <h1>{{ userData.email }}</h1>
+                  </mat-card-subtitle>
+             </mat-card-title-group>
+          </mat-card-header>
+       </mat-card>
+  </div>
+</div>

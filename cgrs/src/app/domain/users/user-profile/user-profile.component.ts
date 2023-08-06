@@ -19,6 +19,7 @@ export class UserProfileComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
+    this.getUserDetails();
   }
 
   ngOnDestroy(): void {
@@ -26,7 +27,7 @@ export class UserProfileComponent implements OnInit, OnDestroy {
     this.unsubscribe$.complete();
   }
 
-  private getUserDetails(id: string): void {
+  private getUserDetails(): void {
     this.spinnerService.showSpinner();
 
     this.usersService.getUsersMyData()

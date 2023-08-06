@@ -1,0 +1,40 @@
+.page-container {
+   margin: 0 0.5%;
+
+   .buttons-container {
+      display: flex;
+      margin-bottom: 24px;
+      column-gap: 8px;
+   }
+
+   .user-info {
+      mat-card {
+         box-shadow: none;
+
+         mat-chip {
+            pointer-events: none;
+            cursor: default;
+         }
+
+         mat-card-title {
+            h1 {
+              font-size: 32px;
+            }
+            display: flex;
+
+            .score-chip {
+               margin-left: 16px;
+               
+               mat-chip {
+                  background-color: red;
+               }
+            }
+         }
+      }
+   }
+
+   ::ng-deep .mat-card-header-text {
+      margin: 0 !important;
+  }
+  
+}
