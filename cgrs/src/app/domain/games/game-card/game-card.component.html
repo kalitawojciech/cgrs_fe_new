@@ -3,6 +3,11 @@
         <mat-card-title-group>
             <mat-card-title>
                 <h1>{{ game.name }}</h1>
+                <mat-chip-list *ngIf="game.averageScore" class="score-chip">
+                    <mat-chip [style.background-color]="getScoreColor()">
+                        <span>{{ game.averageScore }}</span>
+                    </mat-chip>
+                </mat-chip-list>
             </mat-card-title>
             <mat-card-subtitle>
                 <mat-chip-list>

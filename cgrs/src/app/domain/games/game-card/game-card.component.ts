@@ -21,4 +21,22 @@ export class GameCardComponent implements OnInit {
   onCardClick() {
     this.router.navigate(['game', this.game.id]);
   }
+
+  getScoreColor(): string {
+    if (!this.game || !this.game?.averageScore) {
+      return;
+    }
+
+    if (this.game?.averageScore > 84) {
+      return '#005C27'
+    } else if (this.game?.averageScore > 69) {
+      return '#59A173'
+    } else if (this.game?.averageScore > 49) {
+      return '#FFE188'
+    } else if (this.game?.averageScore > 25) {
+      return '#FEBE70'
+    } 
+
+    return '#790002'
+  }
 }

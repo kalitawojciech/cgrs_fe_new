@@ -1,0 +1,4 @@
+<div class="card-table-container">
+   <app-game-card *ngFor="let game of games" [game]="game"></app-game-card>
+</div>
+<mat-paginator [length]="totalDataCount" [pageSize]="pageSize"></mat-paginator>

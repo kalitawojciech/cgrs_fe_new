@@ -37,6 +37,8 @@ import { TagsListComponent } from './domain/tags/tags-list/tags-list.component';
 import { ResetPasswordComponent } from './domain/users/reset-password/reset-password.component';
 import { ChangePasswordComponent } from './domain/users/change-password/change-password.component';
 import { UserProfileComponent } from './domain/users/user-profile/user-profile.component';
+import { PlayedGamesListComponent } from './domain/users/user-profile/played-games-list/played-games-list.component';
+import { GamesGamesCardListComponent } from './domain/games-games-card-list/games-games-card-list.component';
 
 @NgModule({
   declarations: [
@@ -66,6 +68,8 @@ import { UserProfileComponent } from './domain/users/user-profile/user-profile.c
     ResetPasswordComponent,
     ChangePasswordComponent,
     UserProfileComponent,
+    PlayedGamesListComponent,
+    GamesGamesCardListComponent,
   ],
   imports: [
     AppRoutingModule,

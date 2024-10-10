@@ -9,6 +9,7 @@ import { SpinnerService } from 'src/app/core/services/spinner.service';
   styleUrls: ['./user-profile.component.scss']
 })
 export class UserProfileComponent implements OnInit, OnDestroy {
+  userId: string;
   userData: UserProfileResponse;
   
   private unsubscribe$ = new Subject<void>();
@@ -36,6 +37,8 @@ export class UserProfileComponent implements OnInit, OnDestroy {
       takeUntil(this.unsubscribe$))
     .subscribe(x => {
       this.userData = x;
+      this.userId = x.id;
+      console.log(x);
       this.spinnerService.hideSpinner();
     });
   }
